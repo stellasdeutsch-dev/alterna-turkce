@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Турецкий работает как часы — гайд из Вены · Alterna</title>
+<meta name="description" content="Пять правил турецкой грамматики, объяснённых по-человечески. Гайд от парня из Вены: агглютинация, порядок слов, отсутствие рода, гармония гласных. Плюс доступ к 2152 материалам A0→C1.">
+<meta name="theme-color" content="#f4f2f0">
+<meta property="og:title" content="Турецкий работает как часы">
+<meta property="og:description" content="Пять правил турецкой грамматики без таблиц для зубрёжки. Гайд из Вены.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇹🇷</text></svg>">
+</head>
+<body>
+
+<!-- ============ ХРОМ-ГРАДИЕНТЫ ДЛЯ SVG ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="chromeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="18%"  stop-color="#d9d9d9"/>
+      <stop offset="38%"  stop-color="#8d8d8d"/>
+      <stop offset="50%"  stop-color="#efefef"/>
+      <stop offset="62%"  stop-color="#6f6f6f"/>
+      <stop offset="82%"  stop-color="#cfcfcf"/>
+      <stop offset="100%" stop-color="#9a9a9a"/>
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffd0e4"/>
+      <stop offset="35%"  stop-color="#f9569b"/>
+      <stop offset="65%"  stop-color="#ed3482"/>
+      <stop offset="100%" stop-color="#c81f68"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ============ ПРОГРЕСС ============ -->
+<div class="progress" role="progressbar" aria-label="Прогресс чтения" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="progress__fill" id="progressFill"></div>
+</div>
+<div class="readpill" id="readPill"><span id="readPct">0</span>% гайда</div>
+
+<!-- курсор (десктоп) -->
+<div class="cursor" id="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="silk" aria-hidden="true">
+    <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+      <path d="M-100 620 C 220 470, 430 760, 760 590 S 1180 430, 1350 520 L1350 900 L-100 900Z" fill="#ffffff" opacity=".85"/>
+      <path d="M-100 700 C 260 560, 470 830, 800 670 S 1200 520, 1350 610 L1350 900 L-100 900Z" fill="#ffffff" opacity=".6"/>
+    </svg>
+  </div>
+
+  <!-- самрисующаяся линия -->
+  <svg class="squiggle" id="squiggle" viewBox="0 0 600 300" fill="none" aria-hidden="true">
+    <path d="M30 210 C 120 60, 250 30, 340 120 S 470 260, 560 130" stroke="#ed3482" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+  </svg>
+
+  <div class="wrap hero__in">
+    <div class="chip reveal">ВЕНА · ГАЙД · 12 МИНУТ</div>
+    <p class="script hero__script reveal">меня зовут Тимур</p>
+
+    <h1 class="h-display chrome words" data-words>ТУРЕЦКИЙ РАБОТАЕТ КАК ЧАСЫ</h1>
+
+    <p class="hero__sub reveal">Я живу в Вене. Учу турецкий четвёртый год.<br>
+    Сейчас расскажу, как он устроен внутри — <b>пять правил</b> и ни одной таблицы, которую надо зубрить.</p>
+
+    <div class="hero__cta reveal">
+      <a href="#chapter-1" class="btn btn--dark" data-magnetic>Читать гайд</a>
+      <a href="#buy" class="btn btn--ghost" data-magnetic>Забрать доступ · $30</a>
+    </div>
+
+    <div class="hero__badge reveal" aria-hidden="true">
+      <svg viewBox="0 0 120 120"><path id="circPath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none"/>
+      <text class="hero__badgeTxt"><textPath href="#circPath">A0 → C1 · БЕЗ ИСКЛЮЧЕНИЙ · A0 → C1 · БЕЗ ИСКЛЮЧЕНИЙ · </textPath></text></svg>
+      <span class="hero__badgeCore">95%</span>
+    </div>
+  </div>
+
+  <!-- хром-стикеры -->
+  <div class="stickers" aria-hidden="true">
+    <svg class="stk stk--1" data-par="0.10" viewBox="0 0 100 100"><path d="M50 88C22 68 8 52 8 34 8 20 19 10 32 10c8 0 15 4 18 10 3-6 10-10 18-10 13 0 24 10 24 24 0 18-14 34-42 54z" fill="none" stroke="url(#chromeGrad)" stroke-width="7"/></svg>
+    <svg class="stk stk--2" data-par="0.18" viewBox="0 0 100 100"><path d="M50 6l12 27 30 3-22 20 6 30-26-15-26 15 6-30-22-20 30-3z" fill="none" stroke="url(#chromeGrad)" stroke-width="7" stroke-linejoin="round"/></svg>
+    <svg class="stk stk--3" data-par="0.14" viewBox="0 0 100 100"><path d="M56 4L20 56h24l-8 40 40-56H52z" fill="none" stroke="url(#pinkGrad)" stroke-width="7" stroke-linejoin="round"/></svg>
+    <svg class="stk stk--4" data-par="0.22" viewBox="0 0 100 100"><circle cx="42" cy="42" r="30" fill="none" stroke="url(#chromeGrad)" stroke-width="7"/><path d="M64 64l26 26" stroke="url(#chromeGrad)" stroke-width="8" stroke-linecap="round"/></svg>
+    <svg class="stk stk--5" data-par="0.12" viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="url(#pinkGrad)" stroke-width="7"/><path d="M50 30v40M34 44l16-16 16 16" fill="none" stroke="url(#pinkGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <a href="#fan" class="scrollhint" aria-label="Вниз"><span></span></a>
+</header>
+
+<!-- ============ ВЕЕР КАРТОЧЕК ============ -->
+<section class="fan-sec" id="fan">
+  <div class="wrap">
+    <p class="eyebrow reveal">то, что получилось по дороге</p>
+    <h2 class="h-sec mask"><span>109 интерактивных ресурсов</span></h2>
+    <p class="lead reveal">Отдельные мини-сайты под каждый навык. Всё открывается в браузере с телефона.
+      <span class="hint">потяни веер</span>
+    </p>
+  </div>
+
+  <div class="fan" id="fanDeck" role="group" aria-label="Скриншоты ресурсов Alterna">
+    <figure class="fan__card" data-tag="Alterna YouTube"><img src="media/img/phone1.jpg" alt="Каталог YouTube по уровням" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Alterna Çizgi"><img src="media/img/phone2.jpg" alt="Мультфильмы на турецком" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Alterna Kitap"><img src="media/img/phone3.jpg" alt="Книги на турецком" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Alterna Podcasts"><img src="media/img/phone4.jpg" alt="Подкасты на турецком" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Kelime"><img src="media/img/phone5.jpg" alt="Тренажёр слов" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Metin"><img src="media/img/phone6.jpg" alt="Тексты по уровням" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Diyalog"><img src="media/img/phone7.jpg" alt="Диалоги" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Dinleme"><img src="media/img/phone8.jpg" alt="Аудирование" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Oyun"><img src="media/img/phone9.jpg" alt="Игры на запоминание" loading="lazy" width="520" height="970"></figure>
+    <figure class="fan__card" data-tag="Sınav"><img src="media/img/phone10.jpg" alt="Подготовка к экзаменам" loading="lazy" width="520" height="970"></figure>
+  </div>
+
+  <div class="fan__names">
+    <span>Kitap · книги</span><span>Çizgi · мультики</span><span>Podcasts</span>
+    <span>YouTube по уровням</span><span>Kelime · слова</span><span>Metin · тексты</span>
+    <span>Diyalog · диалоги</span><span>Dinleme · аудирование</span><span>Oyun · игры</span>
+    <span>Sınav · экзамены</span>
+  </div>
+</section>
+
+<!-- ============ ГЛАВА 1 ============ -->
+<article class="chap" id="chapter-1" data-chapter="1">
+  <div class="wrap">
+    <p class="kicker reveal"><i>Глава 1</i> швейцарские часы</p>
+    <h2 class="h-sec mask"><span>Почему турецкий —</span><span>это часы</span></h2>
+
+    <div class="story reveal">
+      <p>Я живу в Вене. Рядом с домом — кебабная. В кебабной работает Мурат.</p>
+      <p>Мурат за полгода выучил наизусть мой заказ. Моё имя — не выучил.</p>
+      <p>Однажды я решил заказать по-турецки. Готовился три дня. Выучил одну фразу.</p>
+      <p>Говорю: <b>bir dürüm, lütfen</b>.</p>
+      <p>Мурат смотрит. Говорит: <b>bir dürüm mü?</b></p>
+      <p>Говорю, да.</p>
+      <p>Он говорит: <b>iki dürüm?</b></p>
+      <p>Говорю, нет. Один.</p>
+      <p>Он говорит: <b>üç?</b></p>
+      <p>Я тогда не понял, что он надо мной ржёт.</p>
+      <p>Понял через месяц. Когда узнал, что <b>mü</b> — это вопрос. Отдельный кусочек, который приклеивается к слову.</p>
+      <p>И приклеивается он всегда одинаково. У этого правила нет исключений.</p>
+      <p class="beat">Ни одного.</p>
+      <p>До этого я полтора года учил немецкий. Полтора года я запоминал, почему <b>das Mädchen</b> — среднего рода. Девочка. Среднего рода.</p>
+      <p>Я спрашивал у австрийцев. Австрийцы говорят, ну потому что.</p>
+      <p>А тут — правило. Которое просто работает.</p>
+      <p class="beat">Я чуть не заплакал прямо в кебабной.</p>
+    </div>
+
+    <!-- механизм: диаграмма -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Сколько правил работает без оговорок</h3></div>
+      <div class="bars" id="bars">
+        <div class="bar" data-val="95"><span class="bar__name">Турецкий</span><div class="bar__track"><div class="bar__fill bar__fill--pink"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="70"><span class="bar__name">Русский</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="65"><span class="bar__name">Немецкий</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="60"><span class="bar__name">Английский</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
+      </div>
+      <p class="mech__note">Оценка регулярности: доля случаев, когда выученное правило срабатывает без отдельного списка исключений. <b>95% — это не «турецкий лёгкий».</b> Это «выученное правило не предаёт».</p>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ГЛАВА 2 ============ -->
+<article class="chap chap--alt" id="chapter-2" data-chapter="2">
+  <div class="wrap">
+    <p class="kicker reveal"><i>Глава 2</i> агглютинация</p>
+    <h2 class="h-sec mask"><span>Слово — это не слово.</span><span>Это поезд</span></h2>
+
+    <div class="story reveal">
+      <p>Я подрабатывал в баре. В баре работал Керем.</p>
+      <p>Керем учил меня словам. Учил он так: говорил слово и добавлял к нему кусок.</p>
+      <p>Говорит: <b>ev</b>. Говорю: дом.</p>
+      <p>Говорит: <b>evler</b>. Говорю: дома?</p>
+      <p>Говорит: молодец.</p>
+      <p>Говорит: <b>evlerim</b>. Говорю: мои дома.</p>
+      <p>Говорит: <b>evlerimde</b>. Говорю: в моих домах.</p>
+      <p>Говорит: <b>evlerimdeki</b>.</p>
+      <p>Говорю: блин, Керем.</p>
+      <p>Он говорит: тот, который в моих домах.</p>
+      <p>Говорю, это одно слово? Он говорит, одно.</p>
+      <p>Тогда до меня дошло.</p>
+      <p>Турецкое слово — это поезд. Спереди локомотив, это корень. Дальше вагоны. Каждый вагон что-то значит.</p>
+      <p>И вагоны цепляются всегда в одном порядке. Как в депо.</p>
+      <p>В немецком слово — это чемодан, куда всё утрамбовали и защёлкнули.</p>
+      <p class="beat">В турецком — поезд. Я вижу каждый вагон.</p>
+    </div>
+
+    <!-- механизм: конструктор -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Попробуй</span><h3>Собери поезд</h3></div>
+      <div class="train">
+        <output class="train__word" id="trainWord">ev</output>
+        <p class="train__tr" id="trainTr">дом</p>
+        <div class="train__cars" id="trainCars">
+          <button class="car car--loco is-on" disabled><b>ev</b><small>корень</small></button>
+          <button class="car" data-sfx="ler" data-tr="дома" data-note="множественное число"><b>+ler</b><small>мн. число</small></button>
+          <button class="car" data-sfx="im" data-tr="мои дома" data-note="принадлежность"><b>+im</b><small>мои</small></button>
+          <button class="car" data-sfx="de" data-tr="в моих домах" data-note="местный падеж"><b>+de</b><small>в</small></button>
+          <button class="car" data-sfx="ki" data-tr="тот, который в моих домах" data-note="относительность"><b>+ki</b><small>который</small></button>
+        </div>
+        <p class="train__note" id="trainNote">Нажимай вагоны по порядку. Порядок нельзя нарушить — в этом весь смысл.</p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ГЛАВА 3 ============ -->
+<article class="chap" id="chapter-3" data-chapter="3">
+  <div class="wrap">
+    <p class="kicker reveal"><i>Глава 3</i> порядок слов</p>
+    <h2 class="h-sec mask"><span>Глагол уходит в конец.</span><span>Всегда</span></h2>
+
+    <div class="story reveal">
+      <p>Первый раз я говорил по-турецки в Стамбуле. Аэропорт, кафе, три часа до рейса.</p>
+      <p>Собрал предложение так, как собрал бы по-русски. Говорю: <b>Ben istiyorum çay</b>.</p>
+      <p>Официант улыбнулся. Говорит: <b>Ben çay istiyorum?</b></p>
+      <p>Он меня не исправлял. Он переспрашивал. Но глагол переставил в конец.</p>
+      <p>Я подумал, ну ладно, наверное так вежливее.</p>
+      <p>Через неделю дошло, что дело не в вежливости.</p>
+      <p>В турецком глагол — это точка. Пока он не прозвучал, предложение не закончилось.</p>
+      <p>Поэтому турок дослушивает тебя до конца. У него просто нет выбора.</p>
+      <p>В Вене, кстати, то же самое. Немецкий тоже загоняет глагол в конец придаточного.</p>
+      <p><b>Ich weiß, dass du gestern nach Hause gekommen bist.</b></p>
+      <p>Разница одна. Немецкий делает это иногда. Турецкий — всегда.</p>
+      <p class="beat">Всегда учить проще, чем иногда.</p>
+    </div>
+
+    <!-- механизм: SOV -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Попробуй</span><h3>Переставь глагол</h3></div>
+      <div class="sov">
+        <div class="sov__row" id="sovRow"></div>
+        <p class="sov__ru" id="sovRu"></p>
+        <div class="sov__ctrl">
+          <button class="btn btn--pink" id="sovFix" data-magnetic>Отправить глагол в конец</button>
+          <button class="btn btn--ghost btn--sm" id="sovNext" data-magnetic>Другое предложение</button>
+        </div>
+        <p class="sov__verdict" id="sovVerdict">Красным подсвечен глагол. Он стоит не там, где надо.</p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ГЛАВА 4 ============ -->
+<article class="chap chap--dark" id="chapter-4" data-chapter="4">
+  <div class="wrap">
+    <p class="kicker reveal"><i>Глава 4</i> род и артикли</p>
+    <h2 class="h-sec h-sec--light mask"><span>Ни рода. Ни артиклей.</span><span>Ни одного</span></h2>
+
+    <div class="story story--light reveal">
+      <p>Я живу в Вене третий год. Три года я говорю <b>der</b> и смотрю человеку в глаза.</p>
+      <p>Если человек не поморщился — значит угадал.</p>
+      <p>В немецком у стола есть род. У двери есть род. У ложки есть род.</p>
+      <p>У девочки рода нет, потому что <b>das Mädchen</b>.</p>
+      <p>В турецком рода нет вообще. Ни у чего.</p>
+      <p>Нет «он» и «она». Есть <b>o</b>. Одно слово на всех.</p>
+      <p>Артиклей нет тоже. Ни определённых, ни неопределённых. Ни одного.</p>
+      <p><b>O güzel.</b> Он красивый. Она красивая. Оно красивое.</p>
+      <p>Одна фраза. Ноль вариантов ошибиться.</p>
+      <p>Когда я это прочитал, я ехал в трамвае и улыбался.</p>
+      <p class="beat">Напротив сидела женщина. Она пересела.</p>
+    </div>
+
+    <!-- механизм: сравнение -->
+    <div class="mech mech--dark reveal">
+      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Сколько форм надо помнить</h3></div>
+      <div class="vs">
+        <div class="vs__side">
+          <p class="vs__flag">🇩🇪 Немецкий</p>
+          <div class="vs__grid" id="deGrid">
+            <span>der Tisch</span><span>die Tür</span><span>das Mädchen</span>
+            <span>ein Tisch</span><span>eine Tür</span><span>ein Mädchen</span>
+            <span>dem Tisch</span><span>der Tür</span><span>dem Mädchen</span>
+            <span>den Tisch</span><span>die Tür</span><span>das Mädchen</span>
+          </div>
+          <p class="vs__count"><b id="deCount">0</b> форм только для «стол · дверь · девочка»</p>
+        </div>
+        <div class="vs__side vs__side--win">
+          <p class="vs__flag">🇹🇷 Турецкий</p>
+          <div class="vs__grid vs__grid--one"><span class="vs__one">o</span></div>
+          <p class="vs__count"><b>1</b> слово. На он, она, оно, этот, тот.</p>
+        </div>
+      </div>
+      <p class="mech__note">Это не «турецкий лучше немецкого». Это про то, куда уходит твоя память в первые полгода. В немецком — в род. В турецком — в слова.</p>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ГЛАВА 5 ============ -->
+<article class="chap" id="chapter-5" data-chapter="5">
+  <div class="wrap">
+    <p class="kicker reveal"><i>Глава 5</i> гармония гласных</p>
+    <h2 class="h-sec mask"><span>Окончания не учат.</span><span>Их слышат</span></h2>
+
+    <div class="story reveal">
+      <p>Мне в детстве сказали, что на ухо наступил медведь. Медведь наступил, я проверял.</p>
+      <p>Но турецкий всё равно зашёл. Потому что турецкий — про слух.</p>
+      <p>Гласная в корне решает, какая гласная будет в окончании. Правило называется гармония гласных.</p>
+      <p><b>ev → evler.</b> <b>kitap → kitaplar.</b></p>
+      <p>Не потому что так решили в академии. А потому что иначе рот неудобно.</p>
+      <p>Скажи вслух <b>evlar</b>. Рот сопротивляется. Вот и всё правило.</p>
+      <p>Я перестал учить окончания. Я начал их слышать.</p>
+      <p>Когда я первый раз угадал окончание у слова, которого не знал, я позвонил маме.</p>
+      <p class="beat">Мама сказала, ты чего звонишь в три ночи.</p>
+    </div>
+
+    <!-- механизм: доска гласных -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Восемь гласных, два лагеря</h3></div>
+      <div class="vowels">
+        <div class="vowels__col vowels__col--front">
+          <p class="vowels__ttl">Передние → <b>-ler</b></p>
+          <div class="vowels__row"><span>e</span><span>i</span><span>ö</span><span>ü</span></div>
+        </div>
+        <div class="vowels__col vowels__col--back">
+          <p class="vowels__ttl">Задние → <b>-lar</b></p>
+          <div class="vowels__row"><span>a</span><span>ı</span><span>o</span><span>u</span></div>
+        </div>
+      </div>
+      <p class="mech__note">Смотришь на <b>последнюю</b> гласную слова. Она из левого лагеря — ставишь <b>-ler</b>. Из правого — <b>-lar</b>. Всё.</p>
+    </div>
+
+    <!-- ИГРА -->
+    <div class="game reveal" id="game">
+      <div class="game__bg" id="gameScore">0</div>
+      <div class="game__head">
+        <div>
+          <span class="mech__lbl">Мини-игра</span>
+          <h3>Успей поймать окончание</h3>
+        </div>
+        <div class="game__stats">
+          <div><b id="gScore">0</b><small>очков</small></div>
+          <div><b id="gStreak">0</b><small>подряд</small></div>
+          <div><b id="gLives">3</b><small>жизни</small></div>
+        </div>
+      </div>
+      <div class="game__field" id="gameField">
+        <div class="game__start" id="gameStart">
+          <p>Слова падают. Жми <b>-ler</b> или <b>-lar</b> — по последней гласной.</p>
+          <button class="btn btn--pink" id="gameGo" data-magnetic>Играть</button>
+        </div>
+      </div>
+      <div class="game__pads">
+        <button class="pad pad--ler" data-ans="ler" disabled>-ler</button>
+        <button class="pad pad--lar" data-ans="lar" disabled>-lar</button>
+      </div>
+      <p class="game__msg" id="gameMsg"></p>
+    </div>
+  </div>
+</article>
+
+<!-- ============ ПЕРЕХОД ============ -->
+<section class="bridge">
+  <div class="wrap">
+    <div class="story story--light reveal">
+      <p>Мне понадобилось полтора года, чтобы уложить эти пять правил в голове.</p>
+      <p>Полтора года я собирал их по кускам. Ютуб, форумы, скрины из чужих телеграм-каналов, учебник девяносто восьмого года в пдф.</p>
+      <p>Больше всего времени ушло не на изучение.</p>
+      <p class="beat">На поиск.</p>
+      <p>Я каждый день искал, что учить дальше. Каждый. День.</p>
+      <p>Потом сел и разложил всё, что нашёл, по уровням.</p>
+    </div>
+    <p class="script bridge__script reveal">получилась</p>
+    <h2 class="h-display chrome chrome--light words" data-words>ALTERNA</h2>
+  </div>
+</section>
+
+<!-- ============ ЧИСЛА ============ -->
+<section class="nums" id="inside">
+  <div class="wrap">
+    <p class="eyebrow reveal">что внутри</p>
+    <h2 class="h-sec mask"><span>2152 единицы,</span><span>разложенные по уровням</span></h2>
+
+    <!-- кольцевая диаграмма состава -->
+    <div class="donut reveal" id="donut">
+      <div class="donut__chart">
+        <svg viewBox="0 0 140 140" role="img" aria-label="Состав платформы: 1716 материалов, 131 блок лексики, 128 гайдов по грамматике, 109 ресурсов, 36 гайдов по работе, 32 блока по экзаменам">
+          <circle class="donut__track" cx="70" cy="70" r="54"></circle>
+          <g class="donut__segs" id="donutSegs"></g>
+        </svg>
+        <div class="donut__core"><b id="donutTotal">0</b><small>единиц</small></div>
+      </div>
+      <ul class="donut__legend" id="donutLegend"></ul>
+    </div>
+
+    <div class="ncards">
+      <div class="ncard reveal" data-num="128" data-max="1716">
+        <span class="ncard__i">01</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">гайдов по грамматике</p>
+        <p class="ncard__d">Разбираю как здесь, в главах. Без «откройте страницу сорок два».</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+      <div class="ncard reveal" data-num="131" data-max="1716">
+        <span class="ncard__i">02</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">блоков лексики по темам</p>
+        <p class="ncard__d">Не список слов, а то, что реально говорят. Больница, аренда, работа, ссора.</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+      <div class="ncard reveal" data-num="109" data-max="1716">
+        <span class="ncard__i">03</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">интерактивных ресурсов</p>
+        <p class="ncard__d">Слова, тексты, диалоги, аудирование, игры на запоминание. Всё в браузере.</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+      <div class="ncard reveal" data-num="32" data-max="1716">
+        <span class="ncard__i">04</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">блока по экзаменам</p>
+        <p class="ncard__d">A1, A2, B1, B2, C1 — по каждому отдельно. Формат, задания, что спрашивают.</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+      <div class="ncard reveal" data-num="36" data-max="1716">
+        <span class="ncard__i">05</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">гайдов по работе</p>
+        <p class="ncard__d">Для тех, кто ищет или уже пашет. Резюме, собеседование, документы, начальник.</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+      <div class="ncard ncard--big reveal" data-num="1716" data-max="1716">
+        <span class="ncard__i">06</span>
+        <b class="ncard__n">0</b>
+        <p class="ncard__t">материалов по уровням</p>
+        <p class="ncard__d">Фильмы, книги, мультики, подкасты, приложения, ютуб. Открываешь свой уровень и берёшь.</p>
+        <div class="ncard__bar"><i></i></div>
+      </div>
+    </div>
+
+    <p class="nums__foot reveal">Всё уже собрано. <b>Искать не надо.</b></p>
+  </div>
+</section>
+
+<!-- ============ ДЕМО ПЛАТФОРМЫ ============ -->
+<section class="demo">
+  <div class="wrap">
+    <p class="eyebrow reveal">как это выглядит</p>
+    <h2 class="h-sec mask"><span>Не рендеры.</span><span>Запись экрана</span></h2>
+    <p class="lead reveal">Ниже — настоящая платформа, снятая как есть. Нажми, чтобы посмотреть.</p>
+
+    <div class="laptop reveal">
+      <div class="laptop__screen">
+        <video id="demoVid" playsinline muted loop preload="none" poster="media/video/demo1.jpg" width="900" height="428"></video>
+        <button class="laptop__play" id="demoPlay" aria-label="Смотреть демо">
+          <svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div class="laptop__base"></div>
+    </div>
+
+    <div class="demo__tabs" id="demoTabs" role="tablist" aria-label="Разделы демо">
+      <button class="dtab is-on" data-src="media/video/demo1.mp4" data-poster="media/video/demo1.jpg">Грамматика</button>
+      <button class="dtab" data-src="media/video/demo2.mp4" data-poster="media/video/demo2.jpg">Лексика</button>
+      <button class="dtab" data-src="media/video/demo3.mp4" data-poster="media/video/demo3.jpg">Ресурсы</button>
+      <button class="dtab" data-src="media/video/demo4.mp4" data-poster="media/video/demo4.jpg">Уровни</button>
+      <button class="dtab" data-src="media/video/demo5.mp4" data-poster="media/video/demo5.jpg">Экзамены</button>
+      <button class="dtab" data-src="media/video/demo6.mp4" data-poster="media/video/demo6.jpg">Работа</button>
+      <button class="dtab" data-src="media/video/demo7.mp4" data-poster="media/video/demo7.jpg">Материалы</button>
+    </div>
+
+    <!-- полароиды -->
+    <div class="polas" id="polas">
+      <figure class="pola" style="--r:-6deg"><img src="media/img/notion1.jpg" alt="Главная страница уровня B1-B2-C1" loading="lazy" width="470" height="234"><figcaption>Уровень целиком</figcaption></figure>
+      <figure class="pola" style="--r:4deg"><img src="media/img/notion2.jpg" alt="Лексика: больница, аптека, скорая" loading="lazy" width="470" height="234"><figcaption>Лексика по темам</figcaption></figure>
+      <figure class="pola" style="--r:-3deg"><img src="media/img/notion3.jpg" alt="Грамматика: модальность и наречия" loading="lazy" width="470" height="234"><figcaption>Грамматика</figcaption></figure>
+      <figure class="pola" style="--r:7deg"><img src="media/img/notion4.jpg" alt="Чеклист и календарь занятий" loading="lazy" width="470" height="234"><figcaption>План на месяц</figcaption></figure>
+      <figure class="pola" style="--r:-5deg"><img src="media/img/notion5.jpg" alt="Разделы платформы" loading="lazy" width="470" height="234"><figcaption>Навигация</figcaption></figure>
+      <figure class="pola" style="--r:3deg"><img src="media/img/notion6.jpg" alt="Подборка ресурсов" loading="lazy" width="470" height="234"><figcaption>Подборки</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ДОРОЖКА УРОВНЕЙ ============ -->
+<section class="road">
+  <div class="wrap">
+    <p class="eyebrow reveal">маршрут</p>
+    <h2 class="h-sec mask"><span>От «здравствуйте»</span><span>до новостей без субтитров</span></h2>
+    <div class="road__line" id="roadLine">
+      <div class="road__fill"></div>
+      <div class="road__pts">
+        <div class="rpt" data-lvl="A0"><b>A0</b><small>первые слова</small></div>
+        <div class="rpt" data-lvl="A1"><b>A1</b><small>заказать, спросить</small></div>
+        <div class="rpt" data-lvl="A2"><b>A2</b><small>рассказать о себе</small></div>
+        <div class="rpt" data-lvl="B1"><b>B1</b><small>работа, документы</small></div>
+        <div class="rpt" data-lvl="B2"><b>B2</b><small>спор и мнение</small></div>
+        <div class="rpt" data-lvl="C1"><b>C1</b><small>кино без субтитров</small></div>
+      </div>
+    </div>
+    <p class="lead reveal">Каждый уровень — своя папка. Материал закончился — значит пора дальше. Ты видишь дно, и от этого не страшно.</p>
+  </div>
+</section>
+
+<!-- ============ ДО / ПОСЛЕ ============ -->
+<section class="ba">
+  <div class="wrap">
+    <div class="ba__grid">
+      <div class="ba__col ba__col--before reveal">
+        <p class="ba__ttl">Как было <span>у меня</span></p>
+        <ul>
+          <li>Двенадцать вкладок и ни одной дочитанной</li>
+          <li>Каждый раз начинаю заново с A1</li>
+          <li>Скачал четыре учебника, открыл один</li>
+          <li>Не знаю, что учить дальше</li>
+          <li>Полтора года на поиск, а не на язык</li>
+        </ul>
+      </div>
+      <div class="ba__col ba__col--after reveal">
+        <p class="ba__ttl">Как <span>стало</span></p>
+        <ul>
+          <li>Один адрес вместо двенадцати вкладок</li>
+          <li>Открываю свой уровень и беру готовое</li>
+          <li>Видно, что идёт следующим</li>
+          <li>Материал кончился — уровень вырос</li>
+          <li>Время уходит в язык, а не в поиск</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПОЧЕМУ РАБОТАЕТ ============ -->
+<section class="why">
+  <div class="wrap">
+    <p class="eyebrow reveal">без магии</p>
+    <h2 class="h-sec mask"><span>Почему папка</span><span>работает лучше курса</span></h2>
+    <div class="wcards">
+      <div class="wcard reveal"><span class="wcard__n">01</span><h3>Выбор убивает быстрее сложности</h3><p>Люди бросают язык не потому, что трудно. А потому что каждый день надо решать, что делать сегодня. Здесь решение уже принято за тебя.</p></div>
+      <div class="wcard reveal"><span class="wcard__n">02</span><h3>Ничего не сгорает</h3><p>Один платёж, не подписка. Пропал на два месяца — вернулся, всё на месте. Не надо успевать.</p></div>
+      <div class="wcard reveal"><span class="wcard__n">03</span><h3>Видно дно</h3><p>2152 единицы — конечное число. Конечное не пугает. Пугает бесконечное.</p></div>
+      <div class="wcard reveal"><span class="wcard__n">04</span><h3>Собрано руками</h3><p>Каждую ссылку открывали и смотрели. Поэтому 1716, а не 15 000, выгруженных скриптом.</p></div>
+      <div class="wcard reveal"><span class="wcard__n">05</span><h3>Живёт в телефоне</h3><p>U-Bahn между Reumannplatz и Karlsplatz — это одиннадцать минут. Хватает на блок лексики.</p></div>
+      <div class="wcard reveal"><span class="wcard__n">06</span><h3>Тебе продают папку, а не мечту</h3><p>Учиться всё равно придётся самому. Просто теперь понятно, по чему именно.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЧЕГО НЕТ ============ -->
+<section class="honest">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light reveal">честно</p>
+    <h2 class="h-sec h-sec--light mask"><span>Чего здесь нет</span></h2>
+    <ul class="nolist">
+      <li class="reveal">Куратора, который пишет «ну как, получается?»</li>
+      <li class="reveal">Проверки домашки</li>
+      <li class="reveal">Обещания «C1 за девяносто дней»</li>
+      <li class="reveal">Чата на четыреста человек, где триста восемьдесят молчат</li>
+      <li class="reveal">Подписки, которая спишется в следующем месяце</li>
+      <li class="reveal">Сертификата, который никому не нужен</li>
+    </ul>
+    <p class="honest__end reveal">Есть 2152 материала, разложенных по уровням. И всё.</p>
+  </div>
+</section>
+
+<!-- ============ СРАВНЕНИЕ ============ -->
+<section class="tariffs" id="buy">
+  <div class="wrap">
+    <p class="eyebrow reveal">три способа</p>
+    <h2 class="h-sec mask"><span>Выучить турецкий</span><span>из Вены</span></h2>
+
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <span class="ticket">САМ</span>
+        <h3>По кускам</h3>
+        <ul>
+          <li>Ютуб, форумы, чужие скрины</li>
+          <li>Учебник в пдф без ответов</li>
+          <li class="off">Порядок уровней</li>
+          <li class="off">Понятно, что дальше</li>
+          <li class="off">Кто-то отобрал материал</li>
+        </ul>
+        <div class="tcard__price"><b>€0</b><small>и полтора года на поиск</small></div>
+        <p class="tcard__note">Мой личный маршрут. Не рекомендую.</p>
+      </div>
+
+      <div class="tcard reveal">
+        <span class="ticket">РЕПЕТИТОР</span>
+        <h3>Час в неделю</h3>
+        <ul>
+          <li>Живой человек и обратная связь</li>
+          <li>Разбор твоих ошибок</li>
+          <li>Дисциплина по расписанию</li>
+          <li class="off">Материал между уроками</li>
+          <li class="off">Доступ, когда удобно тебе</li>
+        </ul>
+        <div class="tcard__price"><s>€35</s><b>≈€140</b><small>в месяц, порядок цен по Вене</small></div>
+        <p class="tcard__note">Работает. Но один час — это один час.</p>
+      </div>
+
+      <div class="tcard tcard--win reveal">
+        <span class="ticket ticket--pink">ALTERNA</span>
+        <h3>Вся папка сразу</h3>
+        <ul>
+          <li>128 гайдов по грамматике</li>
+          <li>131 блок лексики по темам</li>
+          <li>109 интерактивных ресурсов</li>
+          <li>32 блока по экзаменам + 36 по работе</li>
+          <li>1716 материалов по уровням</li>
+        </ul>
+        <div class="tcard__price"><b>$30</b><small>один раз · доступ навсегда</small></div>
+        <a class="btn btn--pink btn--full" href="https://app.lava.top/products/2cdbb9f8-e65b-443e-8d2c-4fea4c121e41" target="_blank" rel="noopener" data-magnetic>Приобрести доступ</a>
+        <p class="tcard__note">Дешевле одного часа с репетитором.</p>
+      </div>
+    </div>
+
+    <p class="tariffs__anchor reveal">
+      Один час с репетитором в Вене стоит примерно как весь этот доступ.<br>
+      <b>Разница в том, что час заканчивается.</b>
+    </p>
+  </div>
+</section>
+
+<!-- ============ КВИЗ ============ -->
+<section class="quiz" id="quiz">
+  <div class="wrap">
+    <p class="eyebrow reveal">проверка</p>
+    <h2 class="h-sec mask"><span>Три вопроса</span><span>по тому, что ты прочитал</span></h2>
+    <div class="qbox reveal" id="qbox">
+      <div class="qbox__bar"><i id="qBar"></i></div>
+      <p class="qbox__step"><span id="qStep">1</span> / 3</p>
+      <h3 class="qbox__q" id="qQ"></h3>
+      <div class="qbox__opts" id="qOpts"></div>
+      <p class="qbox__fb" id="qFb"></p>
+    </div>
+    <div class="qres" id="qRes" hidden>
+      <p class="script">получилось</p>
+      <p class="qres__score"><b id="qScore">0</b> из 3</p>
+      <p class="qres__txt" id="qTxt"></p>
+      <a class="btn btn--pink" href="https://app.lava.top/products/2cdbb9f8-e65b-443e-8d2c-4fea4c121e41" target="_blank" rel="noopener" data-magnetic>Забрать доступ · $30</a>
+      <button class="btn btn--ghost btn--sm" id="qAgain" data-magnetic>Ещё раз</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ФИНАЛ ============ -->
+<section class="final">
+  <div class="wrap">
+    <p class="script final__script reveal">ну что</p>
+    <h2 class="h-display chrome words" data-words>ЗАБИРАЙ ПАПКУ</h2>
+    <p class="final__sub reveal">128 гайдов · 131 блок лексики · 109 ресурсов · 32 блока экзаменов · 36 по работе · 1716 материалов</p>
+    <a class="btn btn--pink btn--lg" href="https://app.lava.top/products/2cdbb9f8-e65b-443e-8d2c-4fea4c121e41" target="_blank" rel="noopener" data-magnetic id="finalCta">Приобрести доступ · $30</a>
+    <p class="final__fine reveal">Один платёж. Доступ навсегда. A0 → C1.</p>
+  </div>
+</section>
+
+<!-- ============ ФУТЕР С ФИЗИКОЙ ============ -->
+<footer class="foot">
+  <canvas class="foot__canvas" id="footCanvas" aria-hidden="true"></canvas>
+  <div class="wrap foot__in">
+    <p class="script foot__script">спасибо, что дочитал</p>
+    <h2 class="h-display chrome chrome--light words" data-words>ALTERNA</h2>
+    <div class="foot__links">
+      <a href="https://app.lava.top/products/2cdbb9f8-e65b-443e-8d2c-4fea4c121e41" target="_blank" rel="noopener">Купить доступ</a>
+      <a href="#top">Наверх</a>
+      <a href="#chapter-1">Перечитать гайд</a>
+    </div>
+    <p class="foot__fine">Гайд написан в Вене. Турецкий выучен там же.</p>
+  </div>
+</footer>
+
+<!-- ============ СТИКИ CTA (моб.) ============ -->
+<div class="sticky" id="sticky">
+  <div class="sticky__txt"><b>$30</b><small>один раз, навсегда</small></div>
+  <a class="btn btn--pink btn--sm" href="https://app.lava.top/products/2cdbb9f8-e65b-443e-8d2c-4fea4c121e41" target="_blank" rel="noopener">Забрать</a>
+</div>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>
