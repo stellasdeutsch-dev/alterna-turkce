@@ -94,6 +94,14 @@
   <a href="#fan" class="scrollhint" aria-label="Вниз"><span></span></a>
 </header>
 
+<!-- ============ ЖИВОЕ СЛОВО ============ -->
+<section class="morph" aria-label="Как турецкое слово растёт">
+  <p class="morph__lbl">одно слово. пять смыслов.</p>
+  <div class="morph__word" id="morphWord"></div>
+  <p class="morph__tr" id="morphTr"></p>
+  <div class="morph__dots" id="morphDots"></div>
+</section>
+
 <!-- ============ ВЕЕР КАРТОЧЕК ============ -->
 <section class="fan-sec" id="fan">
   <div class="wrap">
@@ -162,6 +170,24 @@
       </div>
       <p class="mech__note">Оценка регулярности: доля случаев, когда выученное правило срабатывает без отдельного списка исключений. <b>95% — это не «турецкий лёгкий».</b> Это «выученное правило не предаёт».</p>
     </div>
+
+    <!-- механизм: конвейер правил -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Смотри</span><h3>Станок, который не ломается</h3></div>
+      <div class="belt" id="belt">
+        <div class="belt__track" id="beltTrack"></div>
+        <div class="belt__machine">
+          <span class="belt__machineLbl">вопрос</span>
+          <b>mı / mi / mu / mü</b>
+        </div>
+        <div class="belt__rail"></div>
+      </div>
+      <div class="belt__stats">
+        <div><b id="beltDone">0</b><small>слов пропущено</small></div>
+        <div><b id="beltErr">0</b><small>исключений</small></div>
+      </div>
+      <p class="mech__note">Слово заезжает в станок, выезжает с вопросительной частицей. Гласная частицы подстраивается сама. Счётчик исключений не двигается — <b>ему нечего считать</b>.</p>
+    </div>
   </div>
 </article>
 
@@ -197,6 +223,8 @@
         <output class="train__word" id="trainWord">ev</output>
         <p class="train__tr" id="trainTr">дом</p>
         <div class="train__cars" id="trainCars">
+          <span class="train__rails" aria-hidden="true"></span>
+          <span class="train__smoke" id="trainSmoke" aria-hidden="true"><i></i><i></i><i></i></span>
           <button class="car car--loco is-on" disabled><b>ev</b><small>корень</small></button>
           <button class="car" data-sfx="ler" data-tr="дома" data-note="множественное число"><b>+ler</b><small>мн. число</small></button>
           <button class="car" data-sfx="im" data-tr="мои дома" data-note="принадлежность"><b>+im</b><small>мои</small></button>
@@ -243,6 +271,27 @@
         <p class="sov__verdict" id="sovVerdict">Красным подсвечен глагол. Он стоит не там, где надо.</p>
       </div>
     </div>
+
+    <!-- механизм: шкала понимания -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Смотри</span><h3>В какой момент становится понятно</h3></div>
+
+      <div class="und" id="und">
+        <div class="und__row" data-lang="ru">
+          <p class="und__flag">🇷🇺 Русский</p>
+          <div class="und__toks"></div>
+          <div class="und__steps"></div>
+        </div>
+        <div class="und__row" data-lang="tr">
+          <p class="und__flag">🇹🇷 Турецкий</p>
+          <div class="und__toks"></div>
+          <div class="und__steps"></div>
+        </div>
+      </div>
+
+      <button class="btn btn--pink btn--sm und__go" id="undGo" data-magnetic>Проиграть оба предложения</button>
+      <p class="mech__note">Слева понимание набирается по дороге: услышал «читаю» — уже знаешь, что происходит. Справа до последнего слова <b>не понятно вообще ничего</b>. Поэтому турка бесполезно перебивать: он ещё не сказал главное.</p>
+    </div>
   </div>
 </article>
 
@@ -288,6 +337,28 @@
       </div>
       <p class="mech__note">Это не «турецкий лучше немецкого». Это про то, куда уходит твоя память в первые полгода. В немецком — в род. В турецком — в слова.</p>
     </div>
+
+    <!-- механизм: рулетка артиклей -->
+    <div class="mech mech--dark reveal">
+      <div class="mech__head"><span class="mech__lbl">Попробуй</span><h3>Угадай артикль</h3></div>
+
+      <div class="roul">
+        <div class="roul__side">
+          <p class="roul__noun">___ <b id="roulNoun">Tisch</b></p>
+          <div class="roul__reel" id="roulReel"><ul id="roulStrip"></ul></div>
+          <button class="btn btn--ghost btn--sm roul__btn" id="roulGo" data-magnetic>Крутить</button>
+          <p class="roul__score">попаданий <b id="roulHits">0</b> из <b id="roulTries">0</b> · <span id="roulPct">—</span></p>
+        </div>
+
+        <div class="roul__side roul__side--win">
+          <p class="roul__noun">___ <b>masa</b></p>
+          <div class="roul__reel roul__reel--fixed"><span>o</span></div>
+          <button class="btn btn--ghost btn--sm roul__btn" disabled>Крутить нечего</button>
+          <p class="roul__score">попаданий <b>∞</b> из <b>∞</b> · <span class="ok">100%</span></p>
+        </div>
+      </div>
+      <p class="mech__note">Слева — три варианта и вероятность попасть около трети. Справа крутить нечего: <b>вариант один</b>. Вся эта рулетка в турецком просто не существует.</p>
+    </div>
   </div>
 </article>
 
@@ -311,18 +382,26 @@
 
     <!-- механизм: доска гласных -->
     <div class="mech reveal">
-      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Восемь гласных, два лагеря</h3></div>
-      <div class="vowels">
-        <div class="vowels__col vowels__col--front">
-          <p class="vowels__ttl">Передние → <b>-ler</b></p>
-          <div class="vowels__row"><span>e</span><span>i</span><span>ö</span><span>ü</span></div>
+      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Восемь гласных на одном кубе</h3></div>
+      <div class="cube">
+        <svg class="cube__svg" viewBox="0 0 320 260" role="img" aria-label="Куб турецких гласных: восемь гласных по трём признакам">
+          <g class="cube__edges" stroke-linecap="round">
+            <path d="M60 90 L200 90 M200 90 L200 200 M200 200 L60 200 M60 200 L60 90"/>
+            <path d="M120 50 L260 50 M260 50 L260 160 M260 160 L120 160 M120 160 L120 50"/>
+            <path d="M60 90 L120 50 M200 90 L260 50 M200 200 L260 160 M60 200 L120 160"/>
+          </g>
+          <g class="cube__plane" id="cubePlane"><polygon points="0,0 0,0 0,0 0,0"/></g>
+          <g class="cube__nodes" id="cubeNodes"></g>
+        </svg>
+
+        <div class="cube__ctrl" id="cubeCtrl" role="group" aria-label="Признаки гласных">
+          <button class="cbtn is-on" data-axis="front">Ряд · решает -ler / -lar</button>
+          <button class="cbtn" data-axis="round">Огубленность</button>
+          <button class="cbtn" data-axis="high">Подъём</button>
         </div>
-        <div class="vowels__col vowels__col--back">
-          <p class="vowels__ttl">Задние → <b>-lar</b></p>
-          <div class="vowels__row"><span>a</span><span>ı</span><span>o</span><span>u</span></div>
-        </div>
+        <p class="cube__cap" id="cubeCap"></p>
       </div>
-      <p class="mech__note">Смотришь на <b>последнюю</b> гласную слова. Она из левого лагеря — ставишь <b>-ler</b>. Из правого — <b>-lar</b>. Всё.</p>
+      <p class="mech__note">Восемь гласных — это куб из трёх признаков. Для множественного числа важна одна ось: <b>передний ряд → -ler</b>, <b>задний → -lar</b>. Смотришь на последнюю гласную слова, и всё.</p>
     </div>
 
     <!-- ИГРА -->
@@ -369,6 +448,9 @@
     <h2 class="h-display chrome chrome--light words" data-words>ALTERNA</h2>
   </div>
 </section>
+
+<!-- ============ БЕГУЩАЯ СТРОКА ============ -->
+<div class="marq" aria-hidden="true"><div class="marq__in" id="marqIn"></div></div>
 
 <!-- ============ ЧИСЛА ============ -->
 <section class="nums" id="inside">

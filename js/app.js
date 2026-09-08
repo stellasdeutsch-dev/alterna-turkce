@@ -782,6 +782,327 @@
   })();
 
   /* ---------------------------------------------------------
+     18. Живое слово между hero и веером
+     --------------------------------------------------------- */
+  (function morph() {
+    var wEl = $('#morphWord'), tEl = $('#morphTr'), dEl = $('#morphDots');
+    if (!wEl) return;
+
+    var STEPS = [
+      { add: 'ev', tr: 'дом' },
+      { add: 'ler', tr: 'дома' },
+      { add: 'im', tr: 'мои дома' },
+      { add: 'de', tr: 'в моих домах' },
+      { add: 'ki', tr: 'тот, который в моих домах' }
+    ];
+    STEPS.forEach(function () {
+      dEl.appendChild(document.createElement('i'));
+    });
+    var dots = $$('i', dEl);
+    var i = 0, timer = 0, live = false;
+
+    function render() {
+      if (i === 0) wEl.innerHTML = '';
+      var st = STEPS[i];
+      $$('.seg--hot', wEl).forEach(function (s2) { s2.classList.remove('seg--hot'); });
+      var seg = document.createElement('span');
+      seg.className = 'seg seg--new seg--hot';
+      seg.textContent = st.add;
+      wEl.appendChild(seg);
+      tEl.textContent = st.tr;
+      dots.forEach(function (d, k) { d.classList.toggle('on', k <= i); });
+      i = (i + 1) % STEPS.length;
+      timer = setTimeout(render, i === 0 ? 2300 : 1250);
+    }
+
+    // крутим только когда блок на экране — незачем анимировать в никуда
+    var mo = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting && !live) { live = true; i = 0; render(); }
+      else if (!e[0].isIntersecting && live) { live = false; clearTimeout(timer); }
+    }, { threshold: 0.3 });
+    mo.observe($('.morph'));
+  })();
+
+  /* ---------------------------------------------------------
+     19. Конвейер правил (глава 1)
+     --------------------------------------------------------- */
+  (function belt() {
+    var box = $('#belt');
+    if (!box) return;
+    var track = $('#beltTrack'), machine = $('.belt__machine', box);
+    var doneEl = $('#beltDone'), errEl = $('#beltErr');
+
+    // частица вопроса гармонирует по последней гласной: a,ı→mı  e,i→mi  o,u→mu  ö,ü→mü
+    var WORDS = [
+      ['kitap', 'mı'], ['ev', 'mi'], ['okul', 'mu'], ['göz', 'mü'],
+      ['yol', 'mu'], ['şehir', 'mi'], ['gün', 'mü'], ['kız', 'mı'],
+      ['araba', 'mı'], ['deniz', 'mi'], ['köy', 'mü'], ['kuş', 'mu']
+    ];
+    var wi = 0, count = 0, running = false, raf = 0;
+
+    function spawn() {
+      var w = WORDS[wi % WORDS.length]; wi++;
+      var el = document.createElement('div');
+      el.className = 'bword';
+      el.textContent = w[0];
+      track.appendChild(el);
+
+      var W = box.clientWidth;
+      var mid = W / 2;
+      var start = -140, end = W + 40;
+      var t0 = performance.now(), dur = 4200;
+      var stamped = false;
+
+      (function step(t) {
+        var k = clamp((t - t0) / dur, 0, 1);
+        var x = start + (end - start) * k;
+        el.style.transform = 'translateX(' + x + 'px)';
+        if (!stamped && x + el.offsetWidth / 2 >= mid) {
+          stamped = true;
+          el.innerHTML = w[0] + ' <em>' + w[1] + '</em>';
+          el.classList.add('done');
+          machine.classList.add('punch');
+          setTimeout(function () { machine.classList.remove('punch'); }, 300);
+          count++;
+          doneEl.textContent = count;
+          errEl.textContent = '0';
+        }
+        if (k < 1) requestAnimationFrame(step);
+        else el.remove();
+      })(t0);
+    }
+
+    function loop() {
+      if (!running) return;
+      spawn();
+      raf = setTimeout(loop, 1500);
+    }
+
+    var bo = new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting && !running) { running = true; loop(); }
+      else if (!e[0].isIntersecting && running) { running = false; clearTimeout(raf); }
+    }, { threshold: 0.25 });
+    bo.observe(box);
+  })();
+
+  /* ---------------------------------------------------------
+     20. Шкала понимания (глава 3)
+     --------------------------------------------------------- */
+  (function understand() {
+    var box = $('#und'), go = $('#undGo');
+    if (!box) return;
+
+    var ROWS = {
+      // [слово, понимание в процентах после него, это ли ключевое слово]
+      ru: [['Я', 15], ['читаю', 70, true], ['книгу', 100]],
+      tr: [['Ben', 8], ['kitap', 16], ['okuyorum', 100, true]]
+    };
+
+    $$('.und__row', box).forEach(function (row) {
+      var data = ROWS[row.dataset.lang];
+      var toks = $('.und__toks', row), steps = $('.und__steps', row);
+      data.forEach(function (d) {
+        var s2 = document.createElement('span');
+        s2.className = 'utok';
+        s2.textContent = d[0];
+        toks.appendChild(s2);
+
+        var st = document.createElement('div');
+        st.className = 'ustep';
+        st.innerHTML = '<i></i><b>0%</b>';
+        steps.appendChild(st);
+      });
+    });
+
+    var busy = false;
+    function play() {
+      if (busy) return;
+      busy = true;
+      go.disabled = true;
+      $$('.und__row', box).forEach(function (row) {
+        var data = ROWS[row.dataset.lang];
+        var toks = $$('.utok', row), steps = $$('.ustep', row);
+        toks.forEach(function (t) { t.classList.remove('on', 'key'); });
+        steps.forEach(function (st) {
+          st.classList.remove('full');
+          $('i', st).style.height = '0%';
+          $('b', st).textContent = '0%';
+        });
+        data.forEach(function (d, k) {
+          setTimeout(function () {
+            toks[k].classList.add('on');
+            if (d[2]) toks[k].classList.add('key');
+            $('i', steps[k]).style.height = d[1] + '%';
+            $('b', steps[k]).textContent = d[1] + '%';
+            steps[k].classList.toggle('full', d[1] > 55);
+          }, 500 + k * 900);
+        });
+      });
+      setTimeout(function () { busy = false; go.disabled = false; }, 3400);
+    }
+
+    go.addEventListener('click', play);
+    onEnter(box.closest('.mech'), function () { setTimeout(play, 500); });
+  })();
+
+  /* ---------------------------------------------------------
+     21. Рулетка артиклей (глава 4)
+     --------------------------------------------------------- */
+  (function roulette() {
+    var reel = $('#roulReel'), strip = $('#roulStrip'), go = $('#roulGo');
+    if (!reel) return;
+    var nounEl = $('#roulNoun'), hitsEl = $('#roulHits'),
+        triesEl = $('#roulTries'), pctEl = $('#roulPct');
+
+    var NOUNS = [
+      ['Tisch', 'der'], ['Tür', 'die'], ['Mädchen', 'das'],
+      ['Löffel', 'der'], ['Gabel', 'die'], ['Messer', 'das'],
+      ['Stuhl', 'der'], ['Lampe', 'die'], ['Fenster', 'das']
+    ];
+    var ART = ['der', 'die', 'das'];
+    var H = 76, LOOPS = 7;
+
+    for (var i = 0; i < LOOPS * 3 + 3; i++) {
+      var li = document.createElement('li');
+      li.textContent = ART[i % 3];
+      strip.appendChild(li);
+    }
+
+    var cur = 0, hits = 0, tries = 0, spinning = false;
+    nounEl.textContent = NOUNS[0][0];
+
+    go.addEventListener('click', function () {
+      if (spinning) return;
+      spinning = true;
+      go.disabled = true;
+      reel.classList.remove('hit', 'no');
+
+      var noun = NOUNS[cur];
+      var landed = Math.floor(Math.random() * 3);
+      var idx = LOOPS * 3 + landed;
+
+      strip.style.transition = 'none';
+      strip.style.transform = 'translateY(0)';
+      // форсируем перерисовку, иначе браузер склеит сброс и анимацию
+      void strip.offsetHeight;
+      strip.style.transition = '';
+      strip.style.transform = 'translateY(' + (-idx * H) + 'px)';
+
+      setTimeout(function () {
+        tries++;
+        var ok = ART[landed] === noun[1];
+        if (ok) hits++;
+        reel.classList.add(ok ? 'hit' : 'no');
+        hitsEl.textContent = hits;
+        triesEl.textContent = tries;
+        pctEl.textContent = Math.round((hits / tries) * 100) + '%';
+        nounEl.textContent = noun[0] + ' — ' + noun[1];
+
+        setTimeout(function () {
+          cur = (cur + 1) % NOUNS.length;
+          nounEl.textContent = NOUNS[cur][0];
+          reel.classList.remove('hit', 'no');
+          spinning = false;
+          go.disabled = false;
+        }, 1400);
+      }, 1200);
+    });
+  })();
+
+  /* ---------------------------------------------------------
+     22. Куб гласных (глава 5)
+     --------------------------------------------------------- */
+  (function vowelCube() {
+    var nodesG = $('#cubeNodes'), ctrl = $('#cubeCtrl'), cap = $('#cubeCap'),
+        planeG = $('#cubePlane');
+    if (!nodesG) return;
+
+    // координаты вершин куба из разметки рёбер
+    var BACK = { a: [60, 200], o: [60, 90], ı: [200, 200], u: [200, 90] };
+    var FRNT = { e: [120, 160], ö: [120, 50], i: [260, 160], ü: [260, 50] };
+
+    var V = [
+      { c: 'a', p: BACK.a, front: false, round: false, high: false },
+      { c: 'o', p: BACK.o, front: false, round: true, high: false },
+      { c: 'ı', p: BACK['ı'], front: false, round: false, high: true },
+      { c: 'u', p: BACK.u, front: false, round: true, high: true },
+      { c: 'e', p: FRNT.e, front: true, round: false, high: false },
+      { c: 'ö', p: FRNT['ö'], front: true, round: true, high: false },
+      { c: 'i', p: FRNT.i, front: true, round: false, high: true },
+      { c: 'ü', p: FRNT['ü'], front: true, round: true, high: true }
+    ];
+
+    var NS = 'http://www.w3.org/2000/svg';
+    V.forEach(function (v) {
+      var c = document.createElementNS(NS, 'circle');
+      c.setAttribute('cx', v.p[0]); c.setAttribute('cy', v.p[1]); c.setAttribute('r', 19);
+      c.setAttribute('stroke', '#fff'); c.setAttribute('stroke-width', '2.5');
+      var t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', v.p[0]); t.setAttribute('y', v.p[1]);
+      t.textContent = v.c;
+      nodesG.appendChild(c); nodesG.appendChild(t);
+      v.__c = c; v.__t = t;
+    });
+
+    var AXES = {
+      front: {
+        test: function (v) { return v.front; },
+        poly: [FRNT['ö'], FRNT['ü'], FRNT.i, FRNT.e],
+        cap: 'Передний ряд — <b>e, i, ö, ü</b>. Язык впереди. Такому слову достаётся <b>-ler</b>. Остальным четырём — <b>-lar</b>. Это единственная ось, которая решает множественное число.'
+      },
+      round: {
+        test: function (v) { return v.round; },
+        poly: [BACK.o, BACK.u, FRNT['ü'], FRNT['ö']],
+        cap: 'Огубленные — <b>o, u, ö, ü</b>. Губы в трубочку. Эта ось нужна для других окончаний: винительного падежа, вопросительной частицы, притяжательности.'
+      },
+      high: {
+        test: function (v) { return v.high; },
+        poly: [BACK['ı'], BACK.u, FRNT['ü'], FRNT.i],
+        cap: 'Верхний подъём — <b>ı, i, u, ü</b>. Язык поднят к нёбу. Вместе с огубленностью даёт четырёхвариантные окончания: <b>-ı / -i / -u / -ü</b>.'
+      }
+    };
+
+    function apply(name) {
+      var ax = AXES[name];
+      V.forEach(function (v) {
+        var on = ax.test(v);
+        v.__c.setAttribute('fill', on ? '#ed3482' : '#efeceA');
+        v.__c.setAttribute('r', on ? 21 : 17);
+        v.__t.setAttribute('fill', on ? '#ffffff' : '#a9a29c');
+      });
+      $('polygon', planeG).setAttribute('points', ax.poly.map(function (p) { return p.join(','); }).join(' '));
+      cap.innerHTML = ax.cap;
+    }
+
+    $$('.cbtn', ctrl).forEach(function (b) {
+      b.addEventListener('click', function () {
+        $$('.cbtn', ctrl).forEach(function (o) { o.classList.toggle('is-on', o === b); });
+        apply(b.dataset.axis);
+      });
+    });
+    apply('front');
+  })();
+
+  /* ---------------------------------------------------------
+     23. Бегущая строка
+     --------------------------------------------------------- */
+  (function marquee() {
+    var box = $('#marqIn');
+    if (!box) return;
+    var ITEMS = [
+      ['merhaba', 'привет'], ['teşekkürler', 'спасибо'], ['kolay gelsin', 'лёгкой работы'],
+      ['ne kadar', 'сколько'], ['anladım', 'понял'], ['hesap lütfen', 'счёт, пожалуйста'],
+      ['inşallah', 'если получится'], ['afiyet olsun', 'приятного аппетита'],
+      ['görüşürüz', 'увидимся'], ['bir dakika', 'минутку'], ['yavaş yavaş', 'потихоньку'],
+      ['eline sağlık', 'спасибо за еду']
+    ];
+    var html = ITEMS.map(function (it) {
+      return '<span>' + it[0] + ' <i>' + it[1] + '</i></span>';
+    }).join('');
+    box.innerHTML = html + html; // две копии — чтобы шов не было видно
+  })();
+
+  /* ---------------------------------------------------------
      17. Салют из стикеров по CTA
      --------------------------------------------------------- */
   $$('#finalCta, .btn--pink').forEach(function (btn) {

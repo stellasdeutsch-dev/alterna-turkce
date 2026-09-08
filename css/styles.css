@@ -772,3 +772,229 @@ ul{margin:0;padding:0;list-style:none}
   .hero__badge svg,.scrollhint span{animation:none}
   .fan__card{transition:none}
 }
+
+/* =========================================================
+   ЖИВОЕ СЛОВО (между hero и веером)
+   ========================================================= */
+.morph{
+  background:var(--dark);color:#fff;text-align:center;
+  padding:46px var(--pad) 44px;overflow:hidden;
+}
+.morph__lbl{
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.42);font-weight:600;margin-bottom:16px;
+}
+.morph__word{
+  font-family:var(--f-disp);font-weight:600;
+  font-size:clamp(34px,11vw,84px);line-height:1;letter-spacing:.01em;
+  min-height:1.05em;
+}
+.morph__word .seg{display:inline-block}
+.morph__word .seg--new{animation:segIn .5s var(--ease)}
+.morph__word .seg--hot{color:var(--pink-l)}
+@keyframes segIn{
+  from{opacity:0;transform:translateY(-.4em) scale(.6);filter:blur(4px)}
+  to{opacity:1;transform:none;filter:none}
+}
+.morph__tr{
+  font-family:var(--f-scr);font-size:clamp(20px,5.6vw,32px);
+  color:var(--taupe-l);margin-top:10px;min-height:1.2em;
+}
+.morph__dots{display:flex;gap:7px;justify-content:center;margin-top:20px}
+.morph__dots i{
+  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);
+  transition:.4s var(--ease);
+}
+.morph__dots i.on{background:var(--pink);transform:scale(1.5)}
+
+/* =========================================================
+   КОНВЕЙЕР ПРАВИЛ (глава 1)
+   ========================================================= */
+.belt{
+  position:relative;height:132px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,#faf9f8,#f1eeeb);border:1.5px solid var(--line);
+}
+.belt__track{position:absolute;inset:0}
+.bword{
+  position:absolute;top:38px;left:0;white-space:nowrap;
+  font-family:var(--f-disp);font-size:clamp(17px,4.6vw,24px);font-weight:500;
+  padding:7px 13px;border-radius:11px;background:#fff;
+  border:1.5px solid var(--line);box-shadow:0 4px 12px rgba(24,20,18,.07);
+  will-change:transform;
+}
+.bword.done{border-color:var(--pink);color:var(--pink-d);box-shadow:0 6px 18px rgba(237,52,130,.18)}
+.bword em{font-style:normal;color:var(--pink)}
+.belt__machine{
+  position:absolute;left:50%;top:14px;transform:translateX(-50%);
+  z-index:3;width:120px;height:80px;border-radius:14px;
+  background:linear-gradient(180deg,#232323,#0f0f0f);
+  display:grid;place-content:center;justify-items:center;gap:2px;
+  box-shadow:0 12px 26px rgba(0,0,0,.28);
+}
+.belt__machine b{font-family:var(--f-disp);font-size:14px;color:var(--pink-l);letter-spacing:.02em}
+.belt__machineLbl{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.belt__machine.punch{animation:punch .28s var(--ease)}
+@keyframes punch{50%{transform:translateX(-50%) scaleY(.88)}}
+.belt__rail{
+  position:absolute;left:0;right:0;bottom:22px;height:8px;
+  background:repeating-linear-gradient(90deg,#ddd8d4 0 14px,#eae6e2 14px 28px);
+  border-radius:4px;animation:rail 1.1s linear infinite;
+}
+@keyframes rail{to{background-position:28px 0}}
+.belt__stats{display:flex;gap:26px;margin-top:16px}
+.belt__stats b{display:block;font-family:var(--f-disp);font-size:26px;line-height:1;color:var(--ink)}
+.belt__stats div:last-child b{color:var(--pink)}
+.belt__stats small{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+
+/* =========================================================
+   ПОЕЗД (глава 2) — рельсы, колёса, дым
+   ========================================================= */
+.train__cars{position:relative;padding-bottom:26px}
+.train__rails{
+  position:absolute;left:0;right:0;bottom:12px;height:6px;min-width:100%;
+  background:
+    repeating-linear-gradient(90deg,#ddd8d4 0 5px,transparent 5px 16px) center/auto 100%,
+    linear-gradient(180deg,#c9c3bd,#e6e2df);
+  border-radius:3px;
+}
+.train__smoke{position:absolute;left:14px;top:-6px;width:40px;height:40px;pointer-events:none}
+.train__smoke i{
+  position:absolute;left:8px;bottom:0;width:9px;height:9px;border-radius:50%;
+  background:rgba(120,120,120,.28);opacity:0;
+}
+.train__smoke.puff i{animation:puff .9s var(--ease) forwards}
+.train__smoke.puff i:nth-child(2){animation-delay:.12s}
+.train__smoke.puff i:nth-child(3){animation-delay:.24s}
+@keyframes puff{
+  0%{opacity:.7;transform:translate(0,0) scale(.6)}
+  100%{opacity:0;transform:translate(14px,-30px) scale(2.1)}
+}
+.car{position:relative}
+.car::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:-13px;height:9px;
+  background:radial-gradient(circle at 14% 50%,#3a3a3a 0 3.6px,transparent 3.7px),
+             radial-gradient(circle at 86% 50%,#3a3a3a 0 3.6px,transparent 3.7px);
+}
+.car--loco::before{
+  content:"";position:absolute;left:9px;top:-9px;width:11px;height:11px;
+  border-radius:3px 3px 1px 1px;background:var(--pink-d);
+}
+.train__cars.lurch{animation:lurch .34s var(--ease)}
+@keyframes lurch{30%{transform:translateX(-5px)}70%{transform:translateX(3px)}}
+
+/* =========================================================
+   ШКАЛА ПОНИМАНИЯ (глава 3)
+   ========================================================= */
+.und{display:grid;gap:16px}
+.und__row{background:#faf9f8;border:1.5px solid var(--line);border-radius:18px;padding:16px}
+.und__flag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.und__toks{display:flex;gap:7px;flex-wrap:wrap;min-height:44px;align-items:center}
+.utok{
+  padding:8px 13px;border-radius:11px;background:#fff;border:1.5px solid var(--line);
+  font-family:var(--f-disp);font-size:clamp(15px,4.2vw,20px);font-weight:500;
+  color:#c4bdb7;transition:.35s var(--ease);
+}
+.utok.on{color:var(--ink);border-color:#cfc9c4;transform:translateY(-2px)}
+.utok.key{background:linear-gradient(180deg,var(--pink-l),var(--pink));border-color:var(--pink);color:#fff}
+.und__steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin-top:16px;align-items:end}
+.ustep{position:relative;height:74px;border-radius:9px;background:#eae6e2;overflow:hidden;display:flex;align-items:flex-end}
+.ustep i{
+  display:block;width:100%;height:0;
+  background:linear-gradient(180deg,var(--pink-l),var(--pink));
+  transition:height .55s var(--ease);
+}
+.ustep b{
+  position:absolute;left:0;right:0;top:6px;text-align:center;
+  font-family:var(--f-disp);font-size:13px;color:var(--ink);
+}
+.ustep.full b{color:#fff;top:auto;bottom:8px}
+.und__go{margin-top:18px;width:100%}
+
+/* =========================================================
+   РУЛЕТКА АРТИКЛЕЙ (глава 4)
+   ========================================================= */
+.roul{display:grid;gap:14px}
+.roul__side{
+  background:#111;border:1px solid rgba(255,255,255,.09);border-radius:20px;
+  padding:20px 18px;text-align:center;
+}
+.roul__side--win{border-color:rgba(237,52,130,.5);background:linear-gradient(180deg,rgba(237,52,130,.14),rgba(237,52,130,.03))}
+.roul__noun{font-family:var(--f-disp);font-size:20px;color:rgba(255,255,255,.55);margin-bottom:14px}
+.roul__noun b{color:#fff;font-weight:500}
+.roul__reel{
+  position:relative;height:76px;overflow:hidden;border-radius:14px;
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);
+}
+.roul__reel::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 34%,transparent 66%,rgba(0,0,0,.55));
+}
+.roul__reel ul{position:absolute;left:0;right:0;top:0;transition:transform 1.15s cubic-bezier(.16,.9,.24,1)}
+.roul__reel li{
+  height:76px;display:grid;place-items:center;
+  font-family:var(--f-disp);font-size:34px;font-weight:500;color:#fff;
+}
+.roul__reel.hit{border-color:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.16)}
+.roul__reel.no{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.16)}
+.roul__reel--fixed{display:grid;place-items:center;border-color:rgba(237,52,130,.45)}
+.roul__reel--fixed span{font-family:var(--f-disp);font-size:44px;color:#fff}
+.roul__btn{margin-top:14px;color:#fff;border-color:rgba(255,255,255,.26)}
+.roul__btn:disabled{opacity:.4;cursor:default}
+.roul__score{margin-top:12px;font-size:12px;color:rgba(255,255,255,.5)}
+.roul__score b{font-family:var(--f-disp);font-size:17px;color:#fff}
+.roul__score .ok{color:#7ee2a4;font-weight:600}
+.roul__side--win .roul__score b{color:var(--pink-l)}
+
+/* =========================================================
+   КУБ ГЛАСНЫХ (глава 5)
+   ========================================================= */
+.cube{text-align:center}
+.cube__svg{width:100%;max-width:420px;margin:0 auto;overflow:visible}
+.cube__edges path{fill:none;stroke:#ded8d3;stroke-width:1.6}
+.cube__plane polygon{fill:rgba(237,52,130,.1);stroke:rgba(237,52,130,.4);stroke-width:1.4;transition:all .6s var(--ease)}
+.cube__nodes circle{transition:fill .45s var(--ease),r .45s var(--ease),stroke .45s var(--ease)}
+.cube__nodes text{
+  font-family:var(--f-disp);font-size:19px;font-weight:600;
+  text-anchor:middle;dominant-baseline:central;transition:fill .45s var(--ease);
+}
+.cube__ctrl{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.cbtn{
+  padding:9px 14px;border-radius:999px;font-size:12px;font-weight:600;
+  background:#f6f4f2;border:1.5px solid var(--line);color:var(--ink2);transition:.25s;
+}
+.cbtn.is-on{background:var(--ink);border-color:var(--ink);color:#fff}
+.cube__cap{margin-top:14px;font-size:13.5px;color:var(--ink2);min-height:3.2em;line-height:1.55}
+.cube__cap b{color:var(--pink)}
+
+/* =========================================================
+   БЕГУЩАЯ СТРОКА
+   ========================================================= */
+.marq{
+  overflow:hidden;background:var(--dark);color:#fff;
+  padding:16px 0;white-space:nowrap;
+}
+.marq__in{display:inline-flex;gap:0;will-change:transform;animation:marq 42s linear infinite}
+.marq__in span{
+  display:inline-flex;align-items:baseline;gap:9px;padding:0 22px;
+  font-family:var(--f-disp);font-size:clamp(17px,4.4vw,24px);font-weight:500;
+  color:rgba(255,255,255,.9);
+}
+.marq__in span i{
+  font-style:normal;font-family:var(--f-body);font-size:12px;font-weight:500;
+  color:rgba(255,255,255,.38);letter-spacing:.04em;
+}
+.marq__in span::after{content:"·";margin-left:22px;color:var(--pink)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+@media (min-width:700px){
+  .und{grid-template-columns:1fr 1fr}
+  .und__go{width:auto}
+  .roul{grid-template-columns:1fr 1fr}
+  .belt{height:150px}
+  .morph{padding:64px var(--pad) 60px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .belt__rail,.marq__in{animation:none}
+  .morph__word .seg--new{animation:none}
+}
