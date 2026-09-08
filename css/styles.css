@@ -209,7 +209,7 @@ ul{margin:0;padding:0;list-style:none}
   border-radius:999px;padding:7px 15px;font-size:10.5px;font-weight:700;
   letter-spacing:.22em;color:var(--ink2);backdrop-filter:blur(8px);
 }
-.hero__script{margin:20px 0 -4px;transform:rotate(-3deg)}
+.hero__script{margin:20px 0 6px;transform:rotate(-3deg)}
 .hero__sub{margin:22px auto 0;max-width:34ch;font-size:clamp(14.5px,4vw,18px);color:var(--ink2)}
 .hero__cta{display:flex;flex-direction:column;gap:11px;margin-top:28px;align-items:stretch}
 .hero__badge{position:relative;width:104px;height:104px;margin:34px auto 0}
