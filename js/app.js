@@ -91,7 +91,12 @@
     bar.setAttribute('aria-valuenow', Math.round(p * 100));
     pct.textContent = Math.round(p * 100);
     pill.classList.toggle('on', window.scrollY > 500);
-    if (sticky) sticky.classList.toggle('on', window.scrollY > (hero ? hero.offsetHeight : 700));
+    if (sticky) {
+      // прячем у финального CTA — иначе дублирует кнопку и закрывает футер
+      var end = document.querySelector('.final');
+      var atEnd = end && end.getBoundingClientRect().top < window.innerHeight * 0.85;
+      sticky.classList.toggle('on', window.scrollY > (hero ? hero.offsetHeight : 700) && !atEnd);
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
