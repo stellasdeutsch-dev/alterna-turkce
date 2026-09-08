@@ -41,13 +41,16 @@
   /* ---------------------------------------------------------
      2. Общий обсервер появления
      --------------------------------------------------------- */
+  function activate(el) {
+    if (!el || el.__done) return;
+    el.__done = true;
+    el.classList.add('in');
+    io.unobserve(el);
+    if (el.__onIn) el.__onIn();
+  }
+
   var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-      if (e.target.__onIn) e.target.__onIn();
-    });
+    entries.forEach(function (e) { if (e.isIntersecting) activate(e.target); });
   }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
 
   $$('.reveal, .mask, .words').forEach(function (el) { io.observe(el); });
@@ -55,9 +58,25 @@
   function onEnter(el, fn) {
     if (!el) return;
     el.__onIn = fn;
-    if (el.classList.contains('in')) fn();
+    if (el.__done) fn();
     else io.observe(el);
   }
+
+  /* Подстраховка: в фоновой вкладке IntersectionObserver может не сработать,
+     и первый экран остался бы невидимым. Показываем всё, что уже во вьюпорте. */
+  function revealVisible() {
+    $$('.reveal, .mask, .words').forEach(function (el) {
+      if (el.__done) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) activate(el);
+    });
+  }
+  requestAnimationFrame(revealVisible);
+  setTimeout(revealVisible, 800);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) revealVisible();
+  });
+  window.addEventListener('pageshow', revealVisible);
 
   /* ---------------------------------------------------------
      3. Прогресс чтения + стики-CTA
