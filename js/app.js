@@ -1,5 +1,5 @@
 /* =========================================================
-   ALTERNA · гайд из Вены — интерактив и анимации
+   ALTERNA · гайд из Анталии — интерактив и анимации
    ========================================================= */
 (function () {
   'use strict';
@@ -344,7 +344,7 @@
   })();
 
   /* ---------------------------------------------------------
-     10. Немецкий vs турецкий (глава 4)
+     10. Русский vs турецкий (глава 4)
      --------------------------------------------------------- */
   onEnter($('#deGrid'), function () {
     var g = $('#deGrid');
@@ -946,67 +946,132 @@
   })();
 
   /* ---------------------------------------------------------
-     21. Рулетка артиклей (глава 4)
+     21. Одна фраза на всех (глава 4)
      --------------------------------------------------------- */
-  (function roulette() {
-    var reel = $('#roulReel'), strip = $('#roulStrip'), go = $('#roulGo');
-    if (!reel) return;
-    var nounEl = $('#roulNoun'), hitsEl = $('#roulHits'),
-        triesEl = $('#roulTries'), pctEl = $('#roulPct');
+  (function oneForm() {
+    var go = $('#oneGo');
+    if (!go) return;
+    var subj = $('#oneSubj'), subjRu = $('#oneSubjRu'),
+        ru = $('#oneRu'), cnt = $('#oneCount');
 
-    var NOUNS = [
-      ['Tisch', 'der'], ['Tür', 'die'], ['Mädchen', 'das'],
-      ['Löffel', 'der'], ['Gabel', 'die'], ['Messer', 'das'],
-      ['Stuhl', 'der'], ['Lampe', 'die'], ['Fenster', 'das']
+    var ITEMS = [
+      ['çocuk', 'ребёнок', 'Он красивый'],
+      ['kapı', 'дверь', 'Она красивая'],
+      ['deniz', 'море', 'Оно красивое'],
+      ['kedi', 'кошка', 'Она красивая'],
+      ['ev', 'дом', 'Он красивый'],
+      ['gece', 'ночь', 'Она красивая'],
+      ['güneş', 'солнце', 'Оно красивое'],
+      ['çay', 'чай', 'Он красивый']
     ];
-    var ART = ['der', 'die', 'das'];
-    var H = 76, LOOPS = 7;
+    var i = 0, streak = 0;
 
-    for (var i = 0; i < LOOPS * 3 + 3; i++) {
-      var li = document.createElement('li');
-      li.textContent = ART[i % 3];
-      strip.appendChild(li);
+    function flip(el) {
+      el.classList.remove('flip');
+      void el.offsetWidth;   // без сброса анимация не перезапустится
+      el.classList.add('flip');
     }
 
-    var cur = 0, hits = 0, tries = 0, spinning = false;
-    nounEl.textContent = NOUNS[0][0];
-
     go.addEventListener('click', function () {
-      if (spinning) return;
-      spinning = true;
-      go.disabled = true;
-      reel.classList.remove('hit', 'no');
-
-      var noun = NOUNS[cur];
-      var landed = Math.floor(Math.random() * 3);
-      var idx = LOOPS * 3 + landed;
-
-      strip.style.transition = 'none';
-      strip.style.transform = 'translateY(0)';
-      // форсируем перерисовку, иначе браузер склеит сброс и анимацию
-      void strip.offsetHeight;
-      strip.style.transition = '';
-      strip.style.transform = 'translateY(' + (-idx * H) + 'px)';
-
-      setTimeout(function () {
-        tries++;
-        var ok = ART[landed] === noun[1];
-        if (ok) hits++;
-        reel.classList.add(ok ? 'hit' : 'no');
-        hitsEl.textContent = hits;
-        triesEl.textContent = tries;
-        pctEl.textContent = Math.round((hits / tries) * 100) + '%';
-        nounEl.textContent = noun[0] + ' — ' + noun[1];
-
-        setTimeout(function () {
-          cur = (cur + 1) % NOUNS.length;
-          nounEl.textContent = NOUNS[cur][0];
-          reel.classList.remove('hit', 'no');
-          spinning = false;
-          go.disabled = false;
-        }, 1400);
-      }, 1200);
+      i = (i + 1) % ITEMS.length;
+      var it = ITEMS[i];
+      subj.textContent = it[0];
+      subjRu.textContent = it[1];
+      ru.textContent = it[2];
+      flip(subj); flip(ru);
+      streak++;
+      cnt.textContent = streak;
     });
+  })();
+
+  /* ---------------------------------------------------------
+     21b. Спряжение: окончания не зависят от глагола (глава 1)
+     --------------------------------------------------------- */
+  (function conj() {
+    var pick = $('#conjPick'), rows = $('#conjRows');
+    if (!pick) return;
+
+    // после -yor личные окончания огубляются: -um, -sun, —, -uz, -sunuz, -lar
+    var P = [
+      ['ben', 'um', 'я'],
+      ['sen', 'sun', 'ты'],
+      ['o', '', 'он / она'],
+      ['biz', 'uz', 'мы'],
+      ['siz', 'sunuz', 'вы'],
+      ['onlar', 'lar', 'они']
+    ];
+
+    function draw(btn) {
+      var stem = btn.dataset.stem;
+      rows.innerHTML = '';
+      P.forEach(function (pr, k) {
+        var li = document.createElement('li');
+        li.innerHTML =
+          '<span class="conj__pron">' + pr[0] + '</span>' +
+          '<span class="conj__stem">' + stem + '</span>' +
+          '<span class="conj__end">' + (pr[1] ? '-' + pr[1] : '—') + '</span>';
+        rows.appendChild(li);
+        setTimeout(function () { li.classList.add('pop'); }, k * 70);
+      });
+    }
+
+    $$('.cvb', pick).forEach(function (b) {
+      b.addEventListener('click', function () {
+        $$('.cvb', pick).forEach(function (o) { o.classList.toggle('is-on', o === b); });
+        draw(b);
+      });
+    });
+    draw($('.cvb.is-on', pick));
+  })();
+
+  /* ---------------------------------------------------------
+     21c. Шесть падежей на одном слове (глава 2)
+     --------------------------------------------------------- */
+  (function cases() {
+    var chips = $('#caseChips');
+    if (!chips) return;
+    var word = $('#caseWord'), tr = $('#caseTr'), name = $('#caseName'),
+        dot = $('#caseDot'), arrow = $('#caseArrow'), house = $('#caseHouse');
+
+    // где стоит точка и какая стрелка рисуется для каждого падежа
+    var POS = {
+      in:   { x: 130, y: 86, arrow: '', lit: false },
+      to:   { x: 130, y: 86, arrow: 'M30 92 H104 M94 85 L104 92 L94 99', lit: false },
+      from: { x: 226, y: 92, arrow: 'M156 92 H228 M218 85 L228 92 L218 99', lit: false },
+      own:  { x: 130, y: 86, arrow: '', lit: true }
+    };
+
+    function apply(btn) {
+      var sfx = btn.dataset.sfx;
+      word.innerHTML = 'ev' + (sfx ? '<span class="sfx">' + sfx + '</span>' : '');
+      tr.textContent = btn.dataset.tr;
+      name.textContent = btn.dataset.name + ' падеж';
+
+      var p = POS[btn.dataset.pos] || POS.in;
+      // из «за домом» точка должна сначала оказаться внутри — иначе прыжок выглядит рвано
+      if (btn.dataset.pos === 'from') {
+        dot.setAttribute('cx', 130); dot.setAttribute('cy', 86);
+        setTimeout(function () { dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); }, 60);
+      } else if (btn.dataset.pos === 'to') {
+        dot.setAttribute('cx', 34); dot.setAttribute('cy', 92);
+        setTimeout(function () { dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); }, 60);
+      } else {
+        dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y);
+      }
+
+      if (p.arrow) { arrow.setAttribute('d', p.arrow); arrow.classList.add('on'); }
+      else arrow.classList.remove('on');
+
+      house.classList.toggle('lit', p.lit || btn.dataset.sfx === 'i');
+    }
+
+    $$('.cch', chips).forEach(function (b) {
+      b.addEventListener('click', function () {
+        $$('.cch', chips).forEach(function (o) { o.classList.toggle('is-on', o === b); });
+        apply(b);
+      });
+    });
+    apply($('.cch.is-on', chips));
   })();
 
   /* ---------------------------------------------------------

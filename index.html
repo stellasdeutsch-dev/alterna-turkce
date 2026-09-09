@@ -153,22 +153,24 @@
       <p>Понял через месяц. Когда узнал, что <b>mü</b> — это вопрос. Отдельный кусочек, который приклеивается к слову.</p>
       <p>И приклеивается он всегда одинаково. У этого правила нет исключений.</p>
       <p class="beat">Ни одного.</p>
-      <p>До этого я полтора года учил немецкий. Полтора года я запоминал, почему <b>das Mädchen</b> — среднего рода. Девочка. Среднего рода.</p>
-      <p>Я спрашивал у знакомых немцев. Немцы говорят, ну потому что.</p>
+      <p>До этого я знал только русский. А в русском «человек» во множественном — «люди». Не «человеки».</p>
+      <p>«Ребёнок» — «дети». Тоже запомни отдельно.</p>
+      <p>Я в школе спрашивал, почему. Мне говорили, ну потому что.</p>
       <p>А тут — правило. Которое просто работает.</p>
       <p class="beat">Я чуть не заплакал прямо в бюфе.</p>
     </div>
 
     <!-- механизм: диаграмма -->
     <div class="mech reveal">
-      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Сколько правил работает без оговорок</h3></div>
+      <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Насколько надёжно каждое правило</h3></div>
       <div class="bars" id="bars">
-        <div class="bar" data-val="95"><span class="bar__name">Турецкий</span><div class="bar__track"><div class="bar__fill bar__fill--pink"></div></div><span class="bar__num">0%</span></div>
-        <div class="bar" data-val="70"><span class="bar__name">Русский</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
-        <div class="bar" data-val="65"><span class="bar__name">Немецкий</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
-        <div class="bar" data-val="60"><span class="bar__name">Английский</span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="100"><span class="bar__name">Мн. число<br><i>-lar / -ler</i></span><div class="bar__track"><div class="bar__fill bar__fill--pink"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="100"><span class="bar__name">Лицо глагола<br><i>-im, -sin, -iz…</i></span><div class="bar__track"><div class="bar__fill bar__fill--pink"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="99"><span class="bar__name">Падежи<br><i>шесть штук</i></span><div class="bar__track"><div class="bar__fill bar__fill--pink"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="95"><span class="bar__name">Гармония гласных<br><i>кроме заимствований</i></span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
+        <div class="bar" data-val="90"><span class="bar__name">Смягчение<br><i>p·ç·t·k → b·c·d·ğ</i></span><div class="bar__track"><div class="bar__fill"></div></div><span class="bar__num">0%</span></div>
       </div>
-      <p class="mech__note">Оценка регулярности: доля случаев, когда выученное правило срабатывает без отдельного списка исключений. <b>95% — это не «турецкий лёгкий».</b> Это «выученное правило не предаёт».</p>
+      <p class="mech__note">Доля случаев, когда правило срабатывает без отдельного списка исключений. Первые три — вообще без оговорок. Последние два дают сбой только на заимствованиях и на коротком, заранее известном списке. <b>Это не «турецкий лёгкий».</b> Это «выученное правило не предаёт».</p>
     </div>
 
     <!-- механизм: конвейер правил -->
@@ -187,6 +189,28 @@
         <div><b id="beltErr">0</b><small>исключений</small></div>
       </div>
       <p class="mech__note">Слово заезжает в станок, выезжает с вопросительной частицей. Гласная частицы подстраивается сама. Счётчик исключений не двигается — <b>ему нечего считать</b>.</p>
+    </div>
+
+    <!-- механизм: спряжение -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Смотри</span><h3>Один набор окончаний на все глаголы</h3></div>
+
+      <div class="conj">
+        <div class="conj__pick" id="conjPick" role="group" aria-label="Выбери глагол">
+          <button class="cvb is-on" data-stem="geliyor" data-inf="gelmek" data-ru="приходить">gelmek</button>
+          <button class="cvb" data-stem="yapıyor" data-inf="yapmak" data-ru="делать">yapmak</button>
+          <button class="cvb" data-stem="gidiyor" data-inf="gitmek" data-ru="идти">gitmek</button>
+          <button class="cvb" data-stem="içiyor" data-inf="içmek" data-ru="пить">içmek</button>
+        </div>
+
+        <ul class="conj__rows" id="conjRows"></ul>
+
+        <p class="conj__foot">
+          <span class="conj__badge">окончания не изменились</span>
+          столбец справа одинаковый для любого глагола
+        </p>
+      </div>
+      <p class="mech__note">Меняй глагол сколько угодно — <b>розовый столбец стоит на месте</b>. В турецком нет двух спряжений, нет неправильных глаголов и нет списка, который надо выучить отдельно.</p>
     </div>
   </div>
 </article>
@@ -212,7 +236,7 @@
       <p>Тогда до меня дошло.</p>
       <p>Турецкое слово — это поезд. Спереди локомотив, это корень. Дальше вагоны. Каждый вагон что-то значит.</p>
       <p>И вагоны цепляются всегда в одном порядке. Как в депо.</p>
-      <p>В немецком слово — это чемодан, куда всё утрамбовали и защёлкнули.</p>
+      <p>В русском слово — это чемодан. Всё утрамбовали, защёлкнули, снаружи не разберёшь, где что.</p>
       <p class="beat">В турецком — поезд. Я вижу каждый вагон.</p>
     </div>
 
@@ -234,6 +258,37 @@
         <p class="train__note" id="trainNote">Нажимай вагоны по порядку. Порядок нельзя нарушить — в этом весь смысл.</p>
       </div>
     </div>
+
+    <!-- механизм: шесть падежей -->
+    <div class="mech reveal">
+      <div class="mech__head"><span class="mech__lbl">Попробуй</span><h3>Шесть падежей на одном слове</h3></div>
+
+      <div class="case">
+        <svg class="case__pic" viewBox="0 0 260 120" role="img" aria-label="Схема отношения к дому">
+          <path class="case__ground" d="M10 100 H250"/>
+          <g class="case__house" id="caseHouse">
+            <path d="M96 100 V58 L130 34 L164 58 V100 Z"/>
+            <rect x="120" y="74" width="20" height="26" rx="2"/>
+          </g>
+          <path class="case__arrow" id="caseArrow" d="M0 0"/>
+          <circle class="case__dot" id="caseDot" cx="130" cy="86" r="7"/>
+        </svg>
+
+        <output class="case__word" id="caseWord">ev</output>
+        <p class="case__tr" id="caseTr">дом</p>
+
+        <div class="case__chips" id="caseChips" role="group" aria-label="Падежи">
+          <button class="cch is-on" data-sfx="" data-tr="дом" data-pos="in" data-name="основной">ev</button>
+          <button class="cch" data-sfx="i" data-tr="дом (именно этот)" data-pos="in" data-name="винительный">+i</button>
+          <button class="cch" data-sfx="e" data-tr="в дом, домой" data-pos="to" data-name="направительный">+e</button>
+          <button class="cch" data-sfx="de" data-tr="в доме" data-pos="in" data-name="местный">+de</button>
+          <button class="cch" data-sfx="den" data-tr="из дома" data-pos="from" data-name="исходный">+den</button>
+          <button class="cch" data-sfx="in" data-tr="дома (чей-то)" data-pos="own" data-name="родительный">+in</button>
+        </div>
+        <p class="case__name" id="caseName">основной падеж</p>
+      </div>
+      <p class="mech__note">Корень не меняется никогда. Меняется только хвост, и хвост подобран по гармонии гласных. Шесть падежей — <b>шесть кусочков</b>, а не шесть таблиц.</p>
+    </div>
   </div>
 </article>
 
@@ -252,10 +307,10 @@
       <p>Через неделю дошло, что дело не в вежливости.</p>
       <p>В турецком глагол — это точка. Пока он не прозвучал, предложение не закончилось.</p>
       <p>Поэтому турок дослушивает тебя до конца. У него просто нет выбора.</p>
-      <p>В немецком, кстати, то же самое. Он тоже загоняет глагол в конец придаточного.</p>
-      <p><b>Ich weiß, dass du gestern nach Hause gekommen bist.</b></p>
-      <p>Разница одна. Немецкий делает это иногда. Турецкий — всегда.</p>
-      <p class="beat">Всегда учить проще, чем иногда.</p>
+      <p>В русском можно сказать «я читаю книгу». Можно «книгу я читаю». Можно «читаю я книгу».</p>
+      <p>Все три сработают. Свобода.</p>
+      <p>В турецком свободы нет. Порядок один, глагол в конце.</p>
+      <p class="beat">Меньше свободы — меньше способов ошибиться.</p>
     </div>
 
     <!-- механизм: SOV -->
@@ -302,11 +357,15 @@
     <h2 class="h-sec h-sec--light mask"><span>Ни рода. Ни артиклей.</span><span>Ни одного</span></h2>
 
     <div class="story story--light reveal">
-      <p>До турецкого я подступался к немецкому. Год я говорил <b>der</b> и смотрел человеку в глаза.</p>
-      <p>Если человек не морщился — значит угадал.</p>
-      <p>В немецком у стола есть род. У двери есть род. У ложки есть род.</p>
-      <p>У девочки рода нет, потому что <b>das Mädchen</b>.</p>
-      <p>В турецком рода нет вообще. Ни у чего.</p>
+      <p>Меня как-то попросили объяснить турку русский. Начали с простого: стол, дверь, ложка.</p>
+      <p>Он говорит, а почему «мой стол», но «моя дверь».</p>
+      <p>Говорю, ну у стола мужской род, у двери женский.</p>
+      <p>Он говорит, у двери есть пол?</p>
+      <p>Говорю, ну да. И у ложки есть. И у ночи.</p>
+      <p>Он спрашивает, а как понять, какой.</p>
+      <p>Говорю, никак. Просто запомнить.</p>
+      <p>Он посмотрел на меня, как я смотрел на свою первую таблицу падежей.</p>
+      <p>Потому что в турецком рода нет вообще. Ни у чего.</p>
       <p>Нет «он» и «она». Есть <b>o</b>. Одно слово на всех.</p>
       <p>Артиклей нет тоже. Ни определённых, ни неопределённых. Ни одного.</p>
       <p><b>O güzel.</b> Он красивый. Она красивая. Оно красивое.</p>
@@ -320,14 +379,14 @@
       <div class="mech__head"><span class="mech__lbl">Механизм</span><h3>Сколько форм надо помнить</h3></div>
       <div class="vs">
         <div class="vs__side">
-          <p class="vs__flag">🇩🇪 Немецкий</p>
+          <p class="vs__flag">🇷🇺 Русский</p>
           <div class="vs__grid" id="deGrid">
-            <span>der Tisch</span><span>die Tür</span><span>das Mädchen</span>
-            <span>ein Tisch</span><span>eine Tür</span><span>ein Mädchen</span>
-            <span>dem Tisch</span><span>der Tür</span><span>dem Mädchen</span>
-            <span>den Tisch</span><span>die Tür</span><span>das Mädchen</span>
+            <span>мой стол</span><span>моя дверь</span><span>моё окно</span>
+            <span>этот стол</span><span>эта дверь</span><span>это окно</span>
+            <span>большой стол</span><span>большая дверь</span><span>большое окно</span>
+            <span>он красивый</span><span>она красивая</span><span>оно красивое</span>
           </div>
-          <p class="vs__count"><b id="deCount">0</b> форм только для «стол · дверь · девочка»</p>
+          <p class="vs__count"><b id="deCount">0</b> форм только для «стол · дверь · окно»</p>
         </div>
         <div class="vs__side vs__side--win">
           <p class="vs__flag">🇹🇷 Турецкий</p>
@@ -335,29 +394,36 @@
           <p class="vs__count"><b>1</b> слово. На он, она, оно, этот, тот.</p>
         </div>
       </div>
-      <p class="mech__note">Это не «турецкий лучше немецкого». Это про то, куда уходит твоя память в первые полгода. В немецком — в род. В турецком — в слова.</p>
+      <p class="mech__note">Это не «турецкий лучше русского». Это про то, куда уходит память в первые полгода. В русском её съедает согласование. В турецком согласовывать нечего — память уходит в слова.</p>
     </div>
 
-    <!-- механизм: рулетка артиклей -->
+    <!-- механизм: одна фраза на всех -->
     <div class="mech mech--dark reveal">
-      <div class="mech__head"><span class="mech__lbl">Попробуй</span><h3>Угадай артикль</h3></div>
+      <div class="mech__head"><span class="mech__lbl">Смотри</span><h3>Одна фраза на всех</h3></div>
 
-      <div class="roul">
-        <div class="roul__side">
-          <p class="roul__noun">___ <b id="roulNoun">Tisch</b></p>
-          <div class="roul__reel" id="roulReel"><ul id="roulStrip"></ul></div>
-          <button class="btn btn--ghost btn--sm roul__btn" id="roulGo" data-magnetic>Крутить</button>
-          <p class="roul__score">попаданий <b id="roulHits">0</b> из <b id="roulTries">0</b> · <span id="roulPct">—</span></p>
+      <div class="one">
+        <div class="one__subj">
+          <span class="one__lbl">о чём говорим</span>
+          <b id="oneSubj">çocuk</b>
+          <i id="oneSubjRu">ребёнок</i>
         </div>
 
-        <div class="roul__side roul__side--win">
-          <p class="roul__noun">___ <b>masa</b></p>
-          <div class="roul__reel roul__reel--fixed"><span>o</span></div>
-          <button class="btn btn--ghost btn--sm roul__btn" disabled>Крутить нечего</button>
-          <p class="roul__score">попаданий <b>∞</b> из <b>∞</b> · <span class="ok">100%</span></p>
+        <div class="one__lines">
+          <div class="one__line">
+            <span class="one__flag">🇷🇺 русский</span>
+            <b class="one__txt" id="oneRu">Он красивый</b>
+            <em class="one__mark one__mark--no" id="oneRuMark">форма меняется</em>
+          </div>
+          <div class="one__line one__line--tr">
+            <span class="one__flag">🇹🇷 турецкий</span>
+            <b class="one__txt" id="oneTr">O güzel.</b>
+            <em class="one__mark one__mark--ok">не изменилась <span id="oneCount">0</span> раз подряд</em>
+          </div>
         </div>
+
+        <button class="btn btn--ghost btn--sm one__btn" id="oneGo" data-magnetic>Другое слово</button>
       </div>
-      <p class="mech__note">Слева — три варианта и вероятность попасть около трети. Справа крутить нечего: <b>вариант один</b>. Вся эта рулетка в турецком просто не существует.</p>
+      <p class="mech__note">Слева слово тянет за собой согласование: поменялся предмет — поменялась вся фраза. Справа <b>не меняется ничего</b>. Ни местоимение, ни прилагательное. Жми кнопку сколько хочешь — счётчик справа будет только расти.</p>
     </div>
   </div>
 </article>

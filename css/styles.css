@@ -1,5 +1,5 @@
 /* =========================================================
-   ALTERNA · гайд из Вены
+   ALTERNA · гайд из Анталии
    Дизайн-система по мотивам chrome/pink лендинга
    Mobile first
    ========================================================= */
@@ -375,7 +375,7 @@ ul{margin:0;padding:0;list-style:none}
 .sov__verdict{margin-top:14px;font-size:13.5px;color:var(--mute);min-height:2.6em}
 .sov__verdict.ok{color:#1c7a42;font-weight:600}
 
-/* ---------- VS немецкий/турецкий ---------- */
+/* ---------- VS русский/турецкий ---------- */
 .vs{display:grid;gap:16px}
 .vs__side{background:#111;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:18px}
 .vs__side--win{border-color:rgba(237,52,130,.5);background:linear-gradient(180deg,rgba(237,52,130,.14),rgba(237,52,130,.03))}
@@ -910,40 +910,110 @@ ul{margin:0;padding:0;list-style:none}
 .ustep.full b{color:#fff;top:auto;bottom:8px}
 .und__go{margin-top:18px;width:100%}
 
+
 /* =========================================================
-   РУЛЕТКА АРТИКЛЕЙ (глава 4)
+   ОДНА ФРАЗА НА ВСЕХ (глава 4)
    ========================================================= */
-.roul{display:grid;gap:14px}
-.roul__side{
-  background:#111;border:1px solid rgba(255,255,255,.09);border-radius:20px;
-  padding:20px 18px;text-align:center;
+.one{text-align:center}
+.one__subj{
+  display:inline-flex;flex-direction:column;gap:2px;align-items:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;padding:12px 22px;margin-bottom:20px;
 }
-.roul__side--win{border-color:rgba(237,52,130,.5);background:linear-gradient(180deg,rgba(237,52,130,.14),rgba(237,52,130,.03))}
-.roul__noun{font-family:var(--f-disp);font-size:20px;color:rgba(255,255,255,.55);margin-bottom:14px}
-.roul__noun b{color:#fff;font-weight:500}
-.roul__reel{
-  position:relative;height:76px;overflow:hidden;border-radius:14px;
-  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);
+.one__lbl{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.one__subj b{font-family:var(--f-disp);font-size:30px;font-weight:500;color:#fff;line-height:1.1}
+.one__subj b.flip{animation:flipIn .45s var(--ease)}
+.one__subj i{font-family:var(--f-scr);font-size:20px;color:var(--taupe-l);font-style:normal}
+.one__lines{display:grid;gap:11px}
+.one__line{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:16px;text-align:left;
+  display:grid;gap:5px;
 }
-.roul__reel::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 34%,transparent 66%,rgba(0,0,0,.55));
+.one__line--tr{border-color:rgba(237,52,130,.45);background:linear-gradient(180deg,rgba(237,52,130,.14),rgba(237,52,130,.03))}
+.one__flag{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.one__txt{
+  font-family:var(--f-disp);font-size:clamp(21px,6vw,30px);font-weight:500;color:#fff;line-height:1.15;
 }
-.roul__reel ul{position:absolute;left:0;right:0;top:0;transition:transform 1.15s cubic-bezier(.16,.9,.24,1)}
-.roul__reel li{
-  height:76px;display:grid;place-items:center;
-  font-family:var(--f-disp);font-size:34px;font-weight:500;color:#fff;
+.one__txt.flip{animation:flipIn .45s var(--ease)}
+@keyframes flipIn{
+  from{opacity:0;transform:translateY(-.3em) rotateX(50deg)}
+  to{opacity:1;transform:none}
 }
-.roul__reel.hit{border-color:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.16)}
-.roul__reel.no{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.16)}
-.roul__reel--fixed{display:grid;place-items:center;border-color:rgba(237,52,130,.45)}
-.roul__reel--fixed span{font-family:var(--f-disp);font-size:44px;color:#fff}
-.roul__btn{margin-top:14px;color:#fff;border-color:rgba(255,255,255,.26)}
-.roul__btn:disabled{opacity:.4;cursor:default}
-.roul__score{margin-top:12px;font-size:12px;color:rgba(255,255,255,.5)}
-.roul__score b{font-family:var(--f-disp);font-size:17px;color:#fff}
-.roul__score .ok{color:#7ee2a4;font-weight:600}
-.roul__side--win .roul__score b{color:var(--pink-l)}
+.one__mark{font-style:normal;font-size:11.5px;letter-spacing:.04em}
+.one__mark--no{color:#ff9d9d}
+.one__mark--ok{color:#7ee2a4}
+.one__mark--ok span{font-family:var(--f-disp);font-size:15px}
+.one__btn{margin-top:18px;color:#fff;border-color:rgba(255,255,255,.26)}
+
+/* =========================================================
+   СПРЯЖЕНИЕ (глава 1)
+   ========================================================= */
+.conj__pick{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.cvb{
+  padding:9px 14px;border-radius:999px;font-family:var(--f-disp);font-size:15px;
+  background:#f6f4f2;border:1.5px solid var(--line);color:var(--ink2);transition:.25s;
+}
+.cvb.is-on{background:var(--ink);border-color:var(--ink);color:#fff}
+.conj__rows{display:grid;gap:6px}
+.conj__rows li{
+  display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:10px;
+  background:#faf9f8;border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;
+}
+.conj__pron{font-size:12px;color:var(--mute);font-weight:600}
+.conj__stem{
+  font-family:var(--f-disp);font-size:clamp(16px,4.4vw,21px);font-weight:500;
+  color:var(--ink);text-align:right;
+}
+.conj__stem span{display:inline-block}
+.conj__stem .st{transition:opacity .3s}
+.conj__end{
+  font-family:var(--f-disp);font-size:clamp(16px,4.4vw,21px);font-weight:600;
+  color:#fff;background:linear-gradient(180deg,var(--pink-l),var(--pink));
+  border-radius:8px;padding:2px 9px;min-width:74px;text-align:center;
+}
+.conj__ru{grid-column:1/-1;font-size:11.5px;color:var(--mute);margin-top:-2px}
+.conj__rows li.pop{animation:rowPop .4s var(--ease)}
+@keyframes rowPop{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.conj__foot{margin-top:14px;font-size:12.5px;color:var(--mute);display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.conj__badge{
+  background:#e9f7ee;border:1px solid #b6e3c6;color:#1c7a42;
+  font-weight:600;font-size:11px;padding:5px 10px;border-radius:999px;
+}
+
+/* =========================================================
+   ШЕСТЬ ПАДЕЖЕЙ (глава 2)
+   ========================================================= */
+.case{text-align:center}
+.case__pic{width:100%;max-width:300px;margin:0 auto 6px}
+.case__ground{stroke:#e2ddd8;stroke-width:2;stroke-linecap:round}
+.case__house path,.case__house rect{
+  fill:none;stroke:#c9c2bc;stroke-width:2.4;stroke-linejoin:round;
+  transition:stroke .4s var(--ease),fill .4s var(--ease);
+}
+.case__house.lit path{fill:rgba(237,52,130,.08);stroke:var(--pink)}
+.case__house.lit rect{stroke:var(--pink)}
+.case__dot{fill:var(--pink);transition:cx .7s var(--ease),cy .7s var(--ease),opacity .3s}
+.case__arrow{fill:none;stroke:var(--pink);stroke-width:2.2;stroke-linecap:round;opacity:0;transition:opacity .35s}
+.case__arrow.on{opacity:.75}
+.case__word{
+  display:block;font-family:var(--f-disp);font-weight:600;
+  font-size:clamp(30px,9vw,54px);color:var(--ink);line-height:1.1;
+}
+.case__word .sfx{color:var(--pink);display:inline-block;animation:segIn .4s var(--ease)}
+.case__tr{font-family:var(--f-scr);font-size:clamp(19px,5.2vw,28px);color:var(--taupe);margin-top:2px;min-height:1.2em}
+.case__chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.cch{
+  padding:10px 14px;border-radius:12px;font-family:var(--f-disp);font-size:16px;
+  background:#f6f4f2;border:1.5px solid var(--line);color:var(--ink2);transition:.25s var(--ease);
+}
+.cch.is-on{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-2px)}
+.case__name{margin-top:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+
+@media (min-width:700px){
+  .one__lines{grid-template-columns:1fr 1fr}
+  .conj__rows{grid-template-columns:1fr 1fr;gap:8px}
+}
 
 /* =========================================================
    КУБ ГЛАСНЫХ (глава 5)
